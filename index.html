@@ -90,6 +90,10 @@
             background-repeat: no-repeat;
         }
 
+        .hero-mobile-image {
+            display: none;
+        }
+
         .filter-group {
             display: flex;
             flex-wrap: wrap;
@@ -180,10 +184,33 @@
 
         @media (max-width: 640px) {
             .hero-section {
-                min-height: calc(100svh - 80px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                min-height: auto;
                 background-color: #111827;
-                background-size: 100% 100%, 100% auto;
-                background-position: center center, center top;
+                background-image: none;
+                padding-top: 0;
+            }
+
+            .hero-mobile-image {
+                display: block;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
+            }
+
+            .hero-mobile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center center;
+                display: block;
+            }
+
+            .hero-content {
+                padding-top: 2.5rem;
             }
 
             .filter-group {
@@ -255,11 +282,10 @@
     <main class="pt-20 w-full max-w-full overflow-hidden">
 
         <section id="inicio" class="hero-section relative flex items-center justify-center py-12 sm:py-24 text-center text-white w-full">
-            <div class="max-w-4xl mx-auto px-4 w-full overflow-hidden flex flex-col items-center">
-                <div class="w-full max-w-xs sm:max-w-none flex justify-center">
-  
-                </div>
-
+            <div class="hero-mobile-image">
+                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio">
+            </div>
+            <div class="hero-content max-w-4xl mx-auto px-4 w-full overflow-hidden flex flex-col items-center">
                 <h1 class="text-3xl sm:text-6xl font-black leading-tight mb-6 tracking-tight max-w-full px-2" data-aos="fade-up">
                     El rincón del buen sabor en Juigalpa
                 </h1>
