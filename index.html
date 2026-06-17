@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth overflow-x-hidden w-full m-0 p-0">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Restaurante El Patio Chontales | Juigalpa</title>
 
     <meta name="description" content="Restaurante El Patio Chontales en Juigalpa. ¡Una mezcla de Culturas y Sabores! Los mejores tacos, asados, cortes de carne y bebidas con servicio delivery y ambiente al aire libre.">
@@ -39,7 +39,16 @@
 
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; background: #ffffff; color: #111827; font-family: 'Inter', sans-serif; }
+        html, body { 
+            margin: 0; 
+            padding: 0;
+            background: #ffffff; 
+            color: #111827; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
 
         .nav-link {
@@ -67,14 +76,15 @@
             transform: translateY(-2px);
         }
 
-        /* Hero dinámico con Fondo 1 real del local */
+        /* Hero adaptado perfectamente a celulares sin generar scroll y encuadrando la cabaña */
         .hero-section {
-            min-height: 580px;
+            min-height: calc(100vh - 80px);
             background-image: 
-                linear-gradient(180deg, rgba(17, 24, 39, 0.75) 0%, rgba(17, 24, 39, 0.6) 100%), 
+                linear-gradient(180deg, rgba(17, 24, 39, 0.8) 0%, rgba(17, 24, 39, 0.65) 100%), 
                 url('imagenes/Fondo 1.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
+            background-repeat: no-repeat;
         }
 
         .floating-whatsapp {
@@ -184,57 +194,67 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <main class="pt-20">
+    <main class="pt-20 w-full max-w-full overflow-hidden">
 
-        <section id="inicio" class="hero-section relative flex items-center justify-center py-24 text-center text-white">
-            <div class="max-w-4xl mx-auto px-4 w-full">
-                <p class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-6" data-aos="fade-down">
-                    🌮 🥩 🍻 🔥 ¡Una mezcla de Culturas y Sabores!
-                </p>
+        <section id="inicio" class="hero-section relative flex items-center justify-center py-12 sm:py-24 text-center text-white w-full">
+            <div class="max-w-4xl mx-auto px-4 w-full overflow-hidden flex flex-col items-center">
+                <div class="w-full max-w-xs sm:max-w-none flex justify-center">
+                    <p class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full px-4 py-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-6 text-center" data-aos="fade-down">
+                        🌮 🥩 🍻 🔥 ¡Una mezcla de Culturas y Sabores!
+                    </p>
+                </div>
 
-                <h1 class="text-4xl sm:text-6xl font-black leading-tight mb-6 tracking-tight" data-aos="fade-up">
+                <h1 class="text-3xl sm:text-6xl font-black leading-tight mb-6 tracking-tight max-w-full px-2" data-aos="fade-up">
                     El rincón del buen sabor en Juigalpa
                 </h1>
 
-                <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed px-2" data-aos="fade-up" data-aos-delay="100">
                     Disfruta de una experiencia gastronómica única con carnes al carbón, platillos tradicionales, tragos bien fríos y el mejor ambiente de la ciudad.
                 </p>
 
-                <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="180">
-                    <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-8 py-4 text-base">
+                <div class="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md px-4 sm:px-0" data-aos="fade-up" data-aos-delay="180">
+                    <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-8 py-4 text-base w-full sm:w-auto">
                         <i class="fa-brands fa-whatsapp"></i> Ver Menú / Ordenar Delivery
                     </a>
-                    <a href="#especialidades" class="inline-flex items-center justify-center border-2 border-white text-white rounded-full px-8 py-4 font-bold transition hover:bg-white hover:text-ink">
+                    <a href="#especialidades" class="inline-flex items-center justify-center border-2 border-white text-white rounded-full px-8 py-4 font-bold transition hover:bg-white hover:text-ink w-full sm:w-auto">
                         Ver Especialidades
                     </a>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-16 text-left" data-aos="fade-up" data-aos-delay="250">
-                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
-                        <i class="fa-solid fa-heart text-primary text-xl mb-1"></i>
-                        <p class="text-2xl font-black">1.5K</p>
-                        <p class="text-xs text-gray-300">Seguidores</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl mx-auto mt-12 sm:mt-16 text-left px-4 sm:px-0" data-aos="fade-up" data-aos-delay="250">
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
+                        <i class="fa-solid fa-heart text-primary text-xl sm:mb-1"></i>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-black">1.5K</p>
+                            <p class="text-xs text-gray-300">Seguidores</p>
+                        </div>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
-                        <i class="fa-solid fa-fire text-primary text-xl mb-1"></i>
-                        <p class="text-2xl font-black">Al Carbón</p>
-                        <p class="text-xs text-gray-300">Sabor Auténtico</p>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
+                        <i class="fa-solid fa-fire text-primary text-xl sm:mb-1"></i>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-black">Al Carbón</p>
+                            <p class="text-xs text-gray-300">Sabor Auténtico</p>
+                        </div>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
-                        <i class="fa-solid fa-motorcycle text-primary text-xl mb-1"></i>
-                        <p class="text-2xl font-black">Delivery</p>
-                        <p class="text-xs text-gray-300">Rápido y Calientito</p>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
+                        <i class="fa-solid fa-motorcycle text-primary text-xl sm:mb-1"></i>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-black">Delivery</p>
+                            <p class="text-xs text-gray-300">Rápido y Calientito</p>
+                        </div>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
-                        <i class="fa-solid fa-cloud-sun text-primary text-xl mb-1"></i>
-                        <p class="text-2xl font-black">Terraza</p>
-                        <p class="text-xs text-gray-300">Outdoor Seating</p>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
+                        <i class="fa-solid fa-cloud-sun text-primary text-xl sm:mb-1"></i>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-black">Terraza</p>
+                            <p class="text-xs text-gray-300">Outdoor Seating</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="especialidades" class="py-20 bg-soft">
+        <section id="especialidades" class="py-20 bg-soft w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-aos="fade-up">
                     <div class="max-w-xl">
@@ -322,7 +342,7 @@
             </div>
         </section>
 
-        <section id="ambiente" class="py-20 bg-white">
+        <section id="ambiente" class="py-20 bg-white w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div data-aos="fade-right">
@@ -366,7 +386,7 @@
             </div>
         </section>
 
-        <section id="contacto" class="py-20 bg-ink text-white">
+        <section id="contacto" class="py-20 bg-ink text-white w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
                     
@@ -461,7 +481,7 @@
         </section>
     </main>
 
-    <footer class="bg-slate-950 text-white border-t border-white/5 py-12">
+    <footer class="bg-slate-950 text-white border-t border-white/5 py-12 w-full max-w-full overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-3 gap-8 mb-8 items-center">
                 <div class="flex flex-col md:flex-row items-center gap-4">
@@ -509,20 +529,17 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         const logoBtn = document.getElementById('brand-logo-btn');
-
         const messageLabel = document.getElementById('message-label');
         const messageInput = document.getElementById('message');
         const submitBtnText = document.getElementById('submit-btn-text');
         const modalTitle = document.getElementById('modal-title');
         const modalDesc = document.getElementById('modal-desc');
 
-        // LÓGICA DE FILTROS INTERACTIVOS DEL MENÚ
         const filterButtons = document.querySelectorAll('.filter-btn');
         const menuItems = document.querySelectorAll('.menu-item');
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Cambiar clases de estilo en los botones
                 filterButtons.forEach(b => {
                     b.classList.remove('bg-primary', 'text-white', 'shadow-sm');
                     b.classList.add('text-gray-600', 'hover:text-ink');
@@ -532,7 +549,6 @@
 
                 const filterValue = btn.getAttribute('data-filter');
 
-                // Filtrar las tarjetas de comida
                 menuItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.classList.remove('hidden-filter');
@@ -543,7 +559,6 @@
             });
         });
 
-        // Manejo del formulario y cambio de tipo de gestión
         document.querySelectorAll('input[name="order_type"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 if (this.value === 'reserva') {
@@ -562,19 +577,16 @@
             });
         });
 
-        // Control del menú móvil
         function closeMobileMenu() {
             mobileMenu.style.maxHeight = "0px";
             mobileMenu.classList.remove('border-b');
-            menuIcon.classList.remove('fa-xmark');
-            menuIcon.classList.add('fa-bars');
+            menuIcon.className = 'fa-solid fa-bars text-xl';
         }
 
         function openMobileMenu() {
             mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
             mobileMenu.classList.add('border-b');
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-xmark');
+            menuIcon.className = 'fa-solid fa-xmark text-xl';
         }
 
         mobileMenuBtn.addEventListener('click', (e) => {
@@ -603,7 +615,6 @@
             }
         });
 
-        // Envío dinámico de WhatsApp
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -620,7 +631,6 @@
             }
             
             const whatsappUrl = `https://wa.me/50558785729?text=${encodeURIComponent(baseText)}`;
-            
             window.open(whatsappUrl, '_blank');
 
             successModal.classList.add('active');
@@ -638,7 +648,7 @@
                 if (target) {
                     const headerOffset = 80;
                     const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             });
