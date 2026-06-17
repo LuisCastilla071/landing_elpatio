@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante El Patio Chontales | Juigalpa</title>
+
+    <meta name="description" content="Restaurante El Patio Chontales en Juigalpa. ¡Una mezcla de Culturas y Sabores! Los mejores tacos, asados, cortes de carne y bebidas con servicio delivery y ambiente al aire libre.">
+    <meta name="keywords" content="Restaurante El Patio Juigalpa, El Patio Chontales, comida Juigalpa, tacos Juigalpa, asados Chontales, carne asada Nicaragua, delivery Juigalpa">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ea580c',     /* Naranja Fuego */
+                        secondary: '#b45309',   /* Ámbar / Madera Cálida */
+                        ink: '#111827',         /* Fondo Oscuro Elegante */
+                        muted: '#6b7280',
+                        soft: '#fbfbfb'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif']
+                    },
+                    boxShadow: {
+                        glow: '0 20px 60px rgba(234, 88, 12, 0.15)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #ffffff; color: #111827; font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+
+        .nav-link {
+            color: #374151;
+            font-weight: 600;
+            transition: color 180ms ease;
+        }
+        .nav-link:hover { color: #ea580c; }
+
+        .btn-primary {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+            font-weight: 700;
+            background: #ea580c;
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+            transition: all 180ms ease;
+        }
+        .btn-primary:hover {
+            background: #c2410c;
+            transform: translateY(-2px);
+        }
+
+        /* Hero dinámico con Fondo 1 real del local */
+        .hero-section {
+            min-height: 580px;
+            background-image: 
+                linear-gradient(180deg, rgba(17, 24, 39, 0.75) 0%, rgba(17, 24, 39, 0.6) 100%), 
+                url('imagenes/Fondo 1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            right: clamp(1rem, 3vw, 2rem);
+            bottom: clamp(1rem, 3vw, 2rem);
+            width: 58px;
+            height: 58px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: #25d366;
+            color: #fff;
+            font-size: 2rem;
+            box-shadow: 0 14px 32px rgba(37, 211, 102, 0.38);
+            animation: pulse-green 2.2s infinite;
+            transition: transform 180ms ease;
+        }
+        .floating-whatsapp:hover { transform: scale(1.08); animation: none; }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+            70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        #success-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(4px);
+        }
+        #success-modal.active { display: flex; }
+
+        .action-selector input:checked + div {
+            border-color: #ea580c;
+            background-color: #fff7ed;
+            color: #ea580c;
+        }
+
+        /* Estilos de transición para las tarjetas del menú filtrable */
+        .menu-item {
+            transition: all 400ms ease;
+        }
+        .menu-item.hidden-filter {
+            opacity: 0;
+            transform: scale(0.92);
+            position: absolute;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <nav class="fixed top-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-100" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <button type="button" class="flex items-center gap-3 text-left" id="brand-logo-btn">
+                    <img src="imagenes/Logo.jpg" alt="Logo Restaurante El Patio" class="w-12 h-12 object-cover rounded-xl shadow-sm">
+                    <div class="leading-none">
+                        <span class="font-heading font-black text-xl text-ink block tracking-tight">El Patio</span>
+                        <span class="text-primary font-bold text-xs tracking-widest uppercase">Chontales</span>
+                    </div>
+                </button>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="nav-link">Inicio</a>
+                    <a href="#especialidades" class="nav-link">Menú</a>
+                    <a href="#ambiente" class="nav-link">Ambiente</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
+                    <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-6 text-sm">
+                        <i class="fa-solid fa-utensils"></i> Ordenar Ahora
+                    </a>
+                </div>
+
+                <button id="mobile-menu-btn" type="button" class="md:hidden w-11 h-11 rounded-xl border border-gray-200 text-primary flex items-center justify-center transition-colors duration-200" aria-label="Menú">
+                    <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out border-gray-100">
+                <div class="grid gap-1 pb-5 pt-2 px-1">
+                    <a href="#inicio" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Inicio <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
+                    <a href="#especialidades" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Menú <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
+                    <a href="#ambiente" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Ambiente <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
+                    <a href="#contacto" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Contacto <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
+                    <div class="pt-3 px-4">
+                        <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-6 w-full shadow-md">
+                            <i class="fa-solid fa-utensils"></i> Ordenar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <main class="pt-20">
+
+        <section id="inicio" class="hero-section relative flex items-center justify-center py-24 text-center text-white">
+            <div class="max-w-4xl mx-auto px-4 w-full">
+                <p class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-6" data-aos="fade-down">
+                    🌮 🥩 🍻 🔥 ¡Una mezcla de Culturas y Sabores!
+                </p>
+
+                <h1 class="text-4xl sm:text-6xl font-black leading-tight mb-6 tracking-tight" data-aos="fade-up">
+                    El rincón del buen sabor en Juigalpa
+                </h1>
+
+                <p class="text-lg sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                    Disfruta de una experiencia gastronómica única con carnes al carbón, platillos tradicionales, tragos bien fríos y el mejor ambiente de la ciudad.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="180">
+                    <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-8 py-4 text-base">
+                        <i class="fa-brands fa-whatsapp"></i> Ver Menú / Ordenar Delivery
+                    </a>
+                    <a href="#especialidades" class="inline-flex items-center justify-center border-2 border-white text-white rounded-full px-8 py-4 font-bold transition hover:bg-white hover:text-ink">
+                        Ver Especialidades
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mt-16 text-left" data-aos="fade-up" data-aos-delay="250">
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                        <i class="fa-solid fa-heart text-primary text-xl mb-1"></i>
+                        <p class="text-2xl font-black">1.5K</p>
+                        <p class="text-xs text-gray-300">Seguidores</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                        <i class="fa-solid fa-fire text-primary text-xl mb-1"></i>
+                        <p class="text-2xl font-black">Al Carbón</p>
+                        <p class="text-xs text-gray-300">Sabor Auténtico</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                        <i class="fa-solid fa-motorcycle text-primary text-xl mb-1"></i>
+                        <p class="text-2xl font-black">Delivery</p>
+                        <p class="text-xs text-gray-300">Rápido y Calientito</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10">
+                        <i class="fa-solid fa-cloud-sun text-primary text-xl mb-1"></i>
+                        <p class="text-2xl font-black">Terraza</p>
+                        <p class="text-xs text-gray-300">Outdoor Seating</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="especialidades" class="py-20 bg-soft">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-aos="fade-up">
+                    <div class="max-w-xl">
+                        <p class="text-primary font-black uppercase tracking-wide mb-2">Para Compartir y Disfrutar</p>
+                        <h2 class="text-3xl md:text-5xl font-black text-ink mb-4">Nuestras Especialidades</h2>
+                        <p class="text-muted text-base">Filtra y explora las combinaciones perfectas de sazón tradicional directo a tu mesa.</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 self-start md:self-auto bg-gray-200/60 p-1.5 rounded-2xl border border-gray-200/40">
+                        <button type="button" data-filter="all" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 bg-primary text-white shadow-sm">Todos</button>
+                        <button type="button" data-filter="asados" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-ink transition-all duration-200">Asados & Cortes</button>
+                        <button type="button" data-filter="antojos" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-ink transition-all duration-200">Antojos Express</button>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]" id="menu-grid">
+                    
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
+                        <div class="h-56 overflow-hidden">
+                            <img src="imagenes/Comida 1.jpg" alt="Antojos y Especialidades El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Antojos de la Casa</h3>
+                            <p class="text-muted text-sm mb-4">La entrada perfecta. Crujientes totopos acompañados de frijoles refritos, queso fundido y salsas artesanales de la casa.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Sabor Tradicional ✨</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-56 overflow-hidden">
+                            <img src="imagenes/Comida 2.jpg" alt="Asados y Cortes El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Asados & Cortes Premium</h3>
+                            <p class="text-muted text-sm mb-4">Jugosa carne asada al carbón acompañada de gallopinto, maduro madurito, queso tradicional chontaleño y ensalada fresca de repollo.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">El Rey de El Patio 🥩</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-56 overflow-hidden">
+                            <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Deditos Crujientes con Papas</h3>
+                            <p class="text-muted text-sm mb-4">Para los que buscan algo clásico e irresistible. Filetes de pollo bien empanizados acompañados de papas fritas doradas y aderezo especial.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Infaltable para Compartir 🍟</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
+                        <div class="h-56 overflow-hidden">
+                            <img src="imagenes/Comida 4.jpg" alt="Nachos Especiales El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Nachos Supremas El Patio</h3>
+                            <p class="text-muted text-sm mb-4">Gran porción de totopos crujientes cubiertos con generosa carne picada, queso fundido, crema, ensaladilla pico de gallo y un gran sabor.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Ideal para picar 🧀</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-56 overflow-hidden">
+                            <img src="imagenes/Comida 5.jpg" alt="Tacos Crujientes El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Flautas & Tacos Dorados</h3>
+                            <p class="text-muted text-sm mb-4">Deliciosos tacos enrollados fritos a la perfección, bien rellenos, acompañados de su ensalada fresca superior, queso rallado y salsa artesanal.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Súper Crujientes 🌮</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-56 overflow-hidden">
+                            <img src="imagenes/Comida 6.jpg" alt="Especialidades al Queso El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Quesadilla Especial al Carbón</h3>
+                            <p class="text-muted text-sm mb-4">Una explosión de queso fundido estirable que abraza finos cortes asados dentro de una tortilla dorada a la plancha. Servida con ensalada.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">¡Pura tentación! 🔥</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="ambiente" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <p class="text-secondary font-black uppercase tracking-wide mb-2">Siéntete como en casa</p>
+                        <h2 class="text-3xl md:text-5xl font-black text-ink mb-6">Un Ambiente Único</h2>
+                        <p class="text-muted text-lg mb-6 leading-relaxed">
+                            En <strong>El Patio Chontales</strong> nos esmeramos por darte no solo la mejor comida, sino un espacio acogedor y fresco al aire libre. Disfruta de nuestras noches temáticas, música en vivo y la tranquilidad de nuestra icónica terraza.
+                        </p>
+                        
+                        <div class="grid sm:grid-cols-2 gap-4 mb-8">
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-square-check text-primary text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-ink">Terraza al Aire Libre</h4>
+                                    <p class="text-xs text-muted">Espacios frescos ideales para relajarse en Juigalpa.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 items-start">
+                                <i class="fa-solid fa-square-check text-primary text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-ink">Celebraciones y Reuniones</h4>
+                                    <p class="text-xs text-muted">Perfecto para cumpleaños, salidas familiares o entre amigos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#contacto" class="inline-flex items-center gap-3 bg-ink text-white font-bold px-6 py-3.5 rounded-full shadow-lg hover:bg-slate-800 transition">
+                            <i class="fa-regular fa-calendar-check text-primary"></i> Reservar / Hacer Pedido
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
+                        <div class="relative rounded-2xl overflow-hidden shadow group">
+                            <img src="imagenes/Fondo 2.jpg" alt="Terraza El Patio" class="h-64 w-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden shadow mt-8 group">
+                            <img src="imagenes/Fondo 3.jpg" alt="Interiores El Patio" class="h-64 w-full object-cover group-hover:scale-105 transition duration-300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-20 bg-ink text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+                    
+                    <div data-aos="fade-right">
+                        <p class="text-primary font-black uppercase tracking-wide mb-2">Atención Inmediata</p>
+                        <h2 class="text-3xl md:text-5xl font-black mb-6">¿Cómo te ayudamos?</h2>
+                        <p class="text-gray-300 text-lg mb-8">
+                            Ponte en contacto directo con nuestro equipo. Rellena el asistente rápido para iniciar un chat personalizado en WhatsApp según lo que necesites coordinar.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Dirección del Patio</h4>
+                                    <p class="text-gray-300">Del Supermercado El Camarada 1/2 cuadra al Sur, Juigalpa, Chontales, Nicaragua.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Teléfono Directo</h4>
+                                    <p class="text-gray-300">+505 5878 5729</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-lg">Redes Sociales</h4>
+                                    <p class="text-gray-300">Búscanos en Instagram como <span class="text-primary font-semibold">@elpatio.chontales</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white text-ink p-8 rounded-2xl shadow-glow" data-aos="fade-left">
+                        <h3 class="text-2xl font-black mb-1">Contacto Directo vía WhatsApp</h3>
+                        <p class="text-muted text-sm mb-6">Selecciona el tipo de consulta para coordinar rápidamente con nuestro personal.</p>
+                        
+                        <form id="contact-form" class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué deseas realizar?</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="action-selector cursor-pointer">
+                                        <input type="radio" name="order_type" value="delivery" checked class="sr-only">
+                                        <div class="border border-slate-200 rounded-xl p-3 text-center transition font-semibold text-sm flex flex-col items-center gap-1">
+                                            <i class="fa-solid fa-motorcycle text-base"></i>
+                                            Pedir / Delivery
+                                        </div>
+                                    </label>
+                                    <label class="action-selector cursor-pointer">
+                                        <input type="radio" name="order_type" value="reserva" class="sr-only">
+                                        <div class="border border-slate-200 rounded-xl p-3 text-center transition font-semibold text-sm flex flex-col items-center gap-1">
+                                            <i class="fa-regular fa-calendar-days text-base"></i>
+                                            Reservar Mesa
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1" for="name">Tu Nombre</label>
+                                <input id="name" type="text" placeholder="Ej. Carlos Mendoza" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1" for="phone">Número de Celular</label>
+                                <input id="phone" type="tel" placeholder="Ej. 5878 5729" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1" for="message" id="message-label">Detalles del Pedido (Platos y Dirección)</label>
+                                <textarea id="message" rows="3" placeholder="Ej. Quiero consultar por 2 órdenes de deditos de pollo y un asado para enviar a..." required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-primary w-full py-4 text-base">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> <span id="submit-btn-text">Enviar Consulta / Pedido</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-950 text-white border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="grid md:grid-cols-3 gap-8 mb-8 items-center">
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <img src="imagenes/Logo.jpg" alt="Logo El Patio" class="w-14 h-14 object-cover rounded-xl opacity-95">
+                    <div>
+                        <h4 class="font-heading font-black text-xl mb-1">El Patio <span class="text-primary">Chontales</span></h4>
+                        <p class="text-sm text-gray-400">Una mezcla de Culturas y Sabores.</p>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-gray-400"><i class="fa-solid fa-location-dot text-primary mr-2"></i>Juigalpa, Chontales, Nicaragua</p>
+                </div>
+                <div class="flex justify-center md:justify-end gap-4">
+                    <a href="https://wa.me/50558785729" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition text-lg">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 text-center text-sm text-gray-500">
+                <p>&copy; 2026 Restaurante El Patio Chontales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="success-modal">
+        <div class="bg-white border border-primary p-8 rounded-2xl max-w-sm w-full text-center relative transform scale-95 transition-transform duration-300">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-comment-dots"></i>
+            </div>
+            <h3 class="text-2xl font-black text-ink mb-1" id="modal-title">Abriendo WhatsApp</h3>
+            <p class="text-muted text-sm mb-6" id="modal-desc">Te estamos redirigiendo para coordinar tu solicitud directamente con nuestro equipo de atención.</p>
+            <button id="close-modal-btn" type="button" class="btn-primary w-full py-3">Entendido</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: true, offset: 50 });
+
+        const contactForm = document.getElementById('contact-form');
+        const successModal = document.getElementById('success-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const logoBtn = document.getElementById('brand-logo-btn');
+
+        const messageLabel = document.getElementById('message-label');
+        const messageInput = document.getElementById('message');
+        const submitBtnText = document.getElementById('submit-btn-text');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        // LÓGICA DE FILTROS INTERACTIVOS DEL MENÚ
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Cambiar clases de estilo en los botones
+                filterButtons.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+                    b.classList.add('text-gray-600', 'hover:text-ink');
+                });
+                btn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+                btn.classList.remove('text-gray-600', 'hover:text-ink');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                // Filtrar las tarjetas de comida
+                menuItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.classList.remove('hidden-filter');
+                    } else {
+                        item.classList.add('hidden-filter');
+                    }
+                });
+            });
+        });
+
+        // Manejo del formulario y cambio de tipo de gestión
+        document.querySelectorAll('input[name="order_type"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'reserva') {
+                    messageLabel.textContent = "Detalles de la Reserva (Fecha, Hora y N° de Personas)";
+                    messageInput.placeholder = "Ej. Deseo reservar una mesa para 4 personas este sábado a las 7:00 PM para celebrar...";
+                    submitBtnText.textContent = "Solicitar Reserva por WhatsApp";
+                    modalTitle.textContent = "Solicitud Lista";
+                    modalDesc.textContent = "Te estamos redirigiendo para verificar la disponibilidad de mesas con un asesor.";
+                } else {
+                    messageLabel.textContent = "Detalles del Pedido (Platos y Dirección)";
+                    messageInput.placeholder = "Ej. Quiero consultar por 2 órdenes de deditos de pollo y un asado para enviar a...";
+                    submitBtnText.textContent = "Enviar Consulta / Pedido";
+                    modalTitle.textContent = "Abriendo WhatsApp";
+                    modalDesc.textContent = "Te estamos redirigiendo para coordinar tu pedido y calcular el costo de delivery.";
+                }
+            });
+        });
+
+        // Control del menú móvil
+        function closeMobileMenu() {
+            mobileMenu.style.maxHeight = "0px";
+            mobileMenu.classList.remove('border-b');
+            menuIcon.classList.remove('fa-xmark');
+            menuIcon.classList.add('fa-bars');
+        }
+
+        function openMobileMenu() {
+            mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+            mobileMenu.classList.add('border-b');
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-xmark');
+        }
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileMenu.style.maxHeight === "0px" || !mobileMenu.style.maxHeight) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        });
+
+        logoBtn.addEventListener('click', () => {
+            closeMobileMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Envío dinámico de WhatsApp
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            const type = document.querySelector('input[name="order_type"]:checked').value;
+            
+            let baseText = "";
+            if (type === 'reserva') {
+                baseText = `Hola El Patio Chontales, mi nombre es ${name} (Tel: ${phone}). Me gustaría solicitar una reserva con los siguientes detalles: ${message}`;
+            } else {
+                baseText = `Hola El Patio Chontales, mi nombre es ${name} (Tel: ${phone}). Quisiera realizar una consulta/pedido con los siguientes detalles: ${message}`;
+            }
+            
+            const whatsappUrl = `https://wa.me/50558785729?text=${encodeURIComponent(baseText)}`;
+            
+            window.open(whatsappUrl, '_blank');
+
+            successModal.classList.add('active');
+            contactForm.reset();
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            successModal.classList.remove('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
