@@ -79,6 +79,32 @@
             transform: translateY(-2px);
         }
 
+        .btn-primary,
+        .floating-whatsapp,
+        .menu-item,
+        #ambiente img {
+            will-change: transform;
+        }
+
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.28) 45%, transparent 70%);
+            transform: translateX(-120%);
+            transition: transform 520ms ease;
+            pointer-events: none;
+        }
+
+        .btn-primary:hover::after {
+            transform: translateX(120%);
+        }
+
         /* Hero adaptado perfectamente a celulares sin generar scroll y encuadrando la cabaña */
         .hero-section {
             min-height: calc(100svh - 80px);
@@ -94,6 +120,14 @@
             display: none;
         }
 
+        .hero-content > * {
+            animation: hero-reveal 720ms ease both;
+        }
+
+        .hero-content > *:nth-child(2) { animation-delay: 120ms; }
+        .hero-content > *:nth-child(3) { animation-delay: 220ms; }
+        .hero-content > *:nth-child(4) { animation-delay: 320ms; }
+
         .filter-group {
             display: flex;
             flex-wrap: wrap;
@@ -102,6 +136,21 @@
 
         .filter-btn {
             white-space: nowrap;
+            transition: color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .hero-content .grid > div {
+            transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+        }
+
+        .hero-content .grid > div:hover {
+            transform: translateY(-4px);
+            background-color: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.22);
         }
 
         .menu-details {
@@ -123,6 +172,20 @@
             font-weight: 800;
             padding: 0.4rem 0.65rem;
             line-height: 1;
+        }
+
+        .menu-item {
+            animation: card-rise 650ms ease both;
+        }
+
+        .menu-item:nth-child(2) { animation-delay: 80ms; }
+        .menu-item:nth-child(3) { animation-delay: 160ms; }
+        .menu-item:nth-child(4) { animation-delay: 240ms; }
+        .menu-item:nth-child(5) { animation-delay: 320ms; }
+        .menu-item:nth-child(6) { animation-delay: 400ms; }
+
+        .menu-item:hover {
+            transform: translateY(-6px);
         }
 
         .floating-whatsapp {
@@ -149,6 +212,48 @@
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
             70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes hero-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes card-rise {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes image-breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.035); }
+        }
+
+        @keyframes hero-image-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(1.02);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        #ambiente .group:hover img {
+            animation: image-breathe 3s ease-in-out infinite;
         }
 
         #success-modal {
@@ -199,6 +304,7 @@
                 width: 100%;
                 aspect-ratio: 16 / 9;
                 overflow: hidden;
+                animation: hero-image-reveal 720ms ease both;
             }
 
             .hero-mobile-image img {
@@ -226,6 +332,17 @@
                 width: 100%;
                 padding-inline: 1rem;
                 text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
             }
         }
     </style>
@@ -389,8 +506,8 @@
                             <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         </div>
                         <div class="p-6">
-                            <h3 class="font-bold text-xl text-ink mb-2">Deditos de Pollo Doraditos</h3>
-                            <p class="text-muted text-sm mb-4">Tiras de pollo empanizadas al momento, crujientes por fuera y suaves por dentro, con papas fritas calientes y aderezo cremoso para mojar sin pena.</p>
+                            <h3 class="font-bold text-xl text-ink mb-2">Fajitas de Pollo Doraditas</h3>
+                            <p class="text-muted text-sm mb-4">Fajitas de pollo empanizadas al momento, crujientes por fuera y suaves por dentro, con papas fritas calientes y aderezo cremoso para acompañar.</p>
                             <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Favorito Familiar</span>
                             <div class="menu-details">
                                 <span><i class="fa-solid fa-drumstick-bite text-primary"></i> Pollo</span>
@@ -405,7 +522,7 @@
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Nachos Supremos con Carne</h3>
-                            <p class="text-muted text-sm mb-4">Una bandeja abundante de totopos con carne sazonada, queso derretido, crema, pico de gallo y salsa. La opción segura cuando todos quieren picar.</p>
+                            <p class="text-muted text-sm mb-4">Una bandeja abundante de nachos con carne sazonada, queso derretido, crema, pico de gallo y salsa. La opción segura cuando todos quieren picar.</p>
                             <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Porción Generosa</span>
                             <div class="menu-details">
                                 <span><i class="fa-solid fa-people-group text-primary"></i> Compartir</span>
