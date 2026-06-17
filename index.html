@@ -108,12 +108,40 @@
         /* Hero adaptado perfectamente a celulares sin generar scroll y encuadrando la cabaña */
         .hero-section {
             min-height: calc(100svh - 80px);
-            background-image: 
-                linear-gradient(180deg, rgba(17, 24, 39, 0.8) 0%, rgba(17, 24, 39, 0.65) 100%), 
-                url('imagenes/Fondo 1.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
+            background: #111827;
+            overflow: hidden;
+        }
+
+        .hero-bg-carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-bg-carousel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(17, 24, 39, 0.8) 0%, rgba(17, 24, 39, 0.65) 100%);
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            opacity: 0;
+            transform: scale(1.03);
+            transition: opacity 900ms ease, transform 4200ms ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .hero-mobile-image {
@@ -122,6 +150,11 @@
 
         .hero-content > * {
             animation: hero-reveal 720ms ease both;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content > *:nth-child(2) { animation-delay: 120ms; }
@@ -186,6 +219,61 @@
 
         .menu-item:hover {
             transform: translateY(-6px);
+        }
+
+        .food-carousel {
+            position: relative;
+            height: 14rem;
+            overflow: hidden;
+            background: #f3f4f6;
+            contain: layout paint;
+        }
+
+        .food-carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 320ms ease;
+        }
+
+        .food-carousel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .food-carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #f3f4f6;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            left: 50%;
+            bottom: 0.75rem;
+            z-index: 2;
+            display: flex;
+            gap: 0.4rem;
+            transform: translateX(-50%);
+        }
+
+        .carousel-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.62);
+            transition: background-color 180ms ease, transform 180ms ease;
+        }
+
+        .carousel-dot.active {
+            background: #ea580c;
+            transform: scale(1.2);
+        }
+
+        .food-carousel .carousel-dots {
+            pointer-events: none;
         }
 
         .floating-whatsapp {
@@ -301,10 +389,15 @@
 
             .hero-mobile-image {
                 display: block;
+                position: relative;
                 width: 100%;
                 aspect-ratio: 16 / 9;
                 overflow: hidden;
                 animation: hero-image-reveal 720ms ease both;
+            }
+
+            .hero-bg-carousel {
+                display: none;
             }
 
             .hero-mobile-image img {
@@ -354,7 +447,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <button type="button" class="flex items-center gap-3 text-left" id="brand-logo-btn">
-                    <img src="imagenes/Logo.jpg" alt="Logo Restaurante El Patio" class="w-12 h-12 object-cover rounded-xl shadow-sm">
+                    <img src="imagenes/Logo.jpg" alt="Logo Restaurante El Patio" class="w-12 h-12 object-cover rounded-xl shadow-sm" decoding="async">
                     <div class="leading-none">
                         <span class="font-heading font-black text-xl text-ink block tracking-tight">El Patio</span>
                         <span class="text-primary font-bold text-xs tracking-widest uppercase">Chontales</span>
@@ -399,8 +492,15 @@
     <main class="pt-20 w-full max-w-full overflow-hidden">
 
         <section id="inicio" class="hero-section relative flex items-center justify-center py-12 sm:py-24 text-center text-white w-full">
-            <div class="hero-mobile-image">
-                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio">
+            <div class="hero-bg-carousel" data-hero-carousel aria-hidden="true">
+                <img src="imagenes/Fondo 1.jpg" alt="" class="hero-slide active" decoding="async" fetchpriority="high">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+            </div>
+            <div class="hero-mobile-image" data-hero-carousel>
+                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio" class="hero-slide active" decoding="async" fetchpriority="high">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="Terraza de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="Interiores de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
             </div>
             <div class="hero-content max-w-4xl mx-auto px-4 w-full overflow-hidden flex flex-col items-center">
                 <h1 class="text-3xl sm:text-6xl font-black leading-tight mb-6 tracking-tight max-w-full px-2" data-aos="fade-up">
@@ -473,7 +573,7 @@
                     
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
                         <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 1.jpg" alt="Antojos y Especialidades El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <img src="imagenes/Comida 1.jpg" alt="Antojos y Especialidades El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Nachos El Patio con Queso</h3>
@@ -488,7 +588,7 @@
                     
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="100">
                         <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 2.jpg" alt="Asados y Cortes El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <img src="imagenes/Comida 2.jpg" alt="Asados y Cortes El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Carne Asada Chontaleña</h3>
@@ -503,7 +603,7 @@
 
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="200">
                         <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Fajitas de Pollo Doraditas</h3>
@@ -517,8 +617,16 @@
                     </div>
 
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
-                        <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 4.jpg" alt="Nachos Especiales El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 4.jpg" alt="Nachos Supremos con Carne El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 4-2.jpg" alt="Otra vista de Nachos Supremos con Carne El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Nachos Supremos con Carne</h3>
@@ -532,8 +640,16 @@
                     </div>
 
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="100">
-                        <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 5.jpg" alt="Tacos Crujientes El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 5.jpg" alt="Tacos Dorados de la Casa El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 5-2.jpg" alt="Otra vista de Tacos Dorados de la Casa El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Tacos Dorados de la Casa</h3>
@@ -547,8 +663,16 @@
                     </div>
 
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="200">
-                        <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 6.jpg" alt="Especialidades al Queso El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 6.jpg" alt="Quesadilla Asada El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 6-2.jpg" alt="Otra vista de Quesadilla Asada El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Quesadilla Asada El Patio</h3>
@@ -599,10 +723,10 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-aos="fade-left">
                         <div class="relative aspect-[4/3] sm:aspect-auto rounded-2xl overflow-hidden shadow group">
-                            <img src="imagenes/Fondo 2.jpg" alt="Terraza El Patio" class="h-full sm:h-64 w-full object-cover group-hover:scale-105 transition duration-300">
+                            <img src="imagenes/Fondo 2.jpg" alt="Terraza El Patio" class="h-full sm:h-64 w-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                         </div>
                         <div class="relative aspect-[4/3] sm:aspect-auto rounded-2xl overflow-hidden shadow sm:mt-8 group">
-                            <img src="imagenes/Fondo 3.jpg" alt="Interiores El Patio" class="h-full sm:h-64 w-full object-cover group-hover:scale-105 transition duration-300">
+                            <img src="imagenes/Fondo 3.jpg" alt="Interiores El Patio" class="h-full sm:h-64 w-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -708,7 +832,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-3 gap-8 mb-8 items-center">
                 <div class="flex flex-col md:flex-row items-center gap-4">
-                    <img src="imagenes/Logo.jpg" alt="Logo El Patio" class="w-14 h-14 object-cover rounded-xl opacity-95">
+                    <img src="imagenes/Logo.jpg" alt="Logo El Patio" class="w-14 h-14 object-cover rounded-xl opacity-95" loading="lazy" decoding="async">
                     <div>
                         <h4 class="font-heading font-black text-xl mb-1">El Patio <span class="text-primary">Chontales</span></h4>
                         <p class="text-sm text-gray-400">Una mezcla de Culturas y Sabores.</p>
@@ -760,6 +884,93 @@
 
         const filterButtons = document.querySelectorAll('.filter-btn');
         const menuItems = document.querySelectorAll('.menu-item');
+        const carousels = document.querySelectorAll('[data-carousel]');
+        const heroCarousels = document.querySelectorAll('[data-hero-carousel]');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function loadDeferredImage(image) {
+            if (!image?.dataset.src) return;
+
+            image.src = image.dataset.src;
+            image.removeAttribute('data-src');
+        }
+
+        heroCarousels.forEach(carousel => {
+            const slides = carousel.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            function goToHeroSlide(index) {
+                currentSlide = (index + slides.length) % slides.length;
+                loadDeferredImage(slides[currentSlide]);
+
+                slides.forEach((slide, slideIndex) => {
+                    slide.classList.toggle('active', slideIndex === currentSlide);
+                });
+            }
+
+            goToHeroSlide(0);
+
+            if (!reduceMotion && slides.length > 1) {
+                setInterval(() => {
+                    loadDeferredImage(slides[(currentSlide + 1) % slides.length]);
+                    goToHeroSlide(currentSlide + 1);
+                }, 4200);
+            }
+        });
+
+        carousels.forEach(carousel => {
+            const track = carousel.querySelector('.food-carousel-track');
+            const slides = carousel.querySelectorAll('.food-carousel-slide');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            let currentSlide = 0;
+
+            function loadSlideImage(index) {
+                const image = slides[index]?.querySelector('img[data-src]');
+                loadDeferredImage(image);
+            }
+
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'carousel-dot';
+                dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
+                dot.tabIndex = -1;
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+            function goToSlide(index) {
+                currentSlide = (index + slides.length) % slides.length;
+                loadSlideImage(currentSlide);
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('active', dotIndex === currentSlide);
+                });
+            }
+
+            goToSlide(0);
+
+            if ('IntersectionObserver' in window) {
+                const carouselObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        loadSlideImage((currentSlide + 1) % slides.length);
+                        observer.unobserve(carousel);
+                    });
+                }, { rootMargin: '160px' });
+
+                carouselObserver.observe(carousel);
+            }
+
+            if (!reduceMotion && slides.length > 1) {
+                setInterval(() => {
+                    loadSlideImage((currentSlide + 1) % slides.length);
+                    goToSlide(currentSlide + 1);
+                }, 3600);
+            }
+        });
 
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
