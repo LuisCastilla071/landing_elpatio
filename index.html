@@ -458,6 +458,7 @@
                     <a href="#inicio" class="nav-link">Inicio</a>
                     <a href="#especialidades" class="nav-link">Menú</a>
                     <a href="#ambiente" class="nav-link">Ambiente</a>
+                    <a href="#horario" class="nav-link">Horario</a>
                     <a href="#contacto" class="nav-link">Contacto</a>
                     <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-6 text-sm">
                         <i class="fa-solid fa-utensils"></i> Ordenar Ahora
@@ -474,6 +475,7 @@
                     <a href="#inicio" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Inicio <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
                     <a href="#especialidades" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Menú <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
                     <a href="#ambiente" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Ambiente <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
+                    <a href="#horario" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Horario <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
                     <a href="#contacto" class="mobile-nav-link nav-link py-3 px-4 rounded-xl hover:bg-orange-50/60 flex items-center justify-between">Contacto <i class="fa-solid fa-chevron-right text-xs opacity-40"></i></a>
                     <div class="pt-3 px-4">
                         <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-6 w-full shadow-md">
@@ -496,11 +498,15 @@
                 <img src="imagenes/Fondo 1.jpg" alt="" class="hero-slide active" decoding="async" fetchpriority="high">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 4.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 5.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
             </div>
             <div class="hero-mobile-image" data-hero-carousel>
                 <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio" class="hero-slide active" decoding="async" fetchpriority="high">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="Terraza de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="Interiores de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 4.jpg" alt="Ambiente de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 5.jpg" alt="Nueva vista de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
             </div>
             <div class="hero-content max-w-4xl mx-auto px-4 w-full overflow-hidden flex flex-col items-center">
                 <h1 class="text-3xl sm:text-6xl font-black leading-tight mb-6 tracking-tight max-w-full px-2" data-aos="fade-up">
@@ -572,8 +578,16 @@
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]" id="menu-grid">
                     
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
-                        <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 1.jpg" alt="Antojos y Especialidades El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 1.jpg" alt="Antojos y Especialidades El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 1-2.jpg" alt="Otra vista de Antojos y Especialidades El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Nachos El Patio con Queso</h3>
@@ -587,8 +601,16 @@
                     </div>
                     
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="100">
-                        <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 2.jpg" alt="Asados y Cortes El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 2.jpg" alt="Asados y Cortes El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 2-2.jpg" alt="Otra vista de Asados y Cortes El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Carne Asada Chontaleña</h3>
@@ -602,8 +624,16 @@
                     </div>
 
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="200">
-                        <div class="h-56 overflow-hidden">
-                            <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 3-3.jpg" alt="Otra vista de Deditos de Pollo con Papas El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-bold text-xl text-ink mb-2">Fajitas de Pollo Doraditas</h3>
@@ -727,6 +757,49 @@
                         </div>
                         <div class="relative aspect-[4/3] sm:aspect-auto rounded-2xl overflow-hidden shadow sm:mt-8 group">
                             <img src="imagenes/Fondo 3.jpg" alt="Interiores El Patio" class="h-full sm:h-64 w-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="horario" class="py-20 bg-soft w-full max-w-full overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100" data-aos="fade-right">
+                        <img src="imagenes/Horario.jpg" alt="Nuevo horario de atencion de Restaurante El Patio Juigalpa" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    </div>
+
+                    <div data-aos="fade-left">
+                        <p class="text-primary font-black uppercase tracking-wide mb-2">Nuevo Horario</p>
+                        <h2 class="text-3xl md:text-5xl font-black text-ink mb-6">Te esperamos en Sucursal Juigalpa</h2>
+                        <p class="text-muted text-lg mb-8 leading-relaxed">
+                            Restaurante El Patio actualiza su horario de atencion para que disfrutes tus comidas favoritas desde el mediodia hasta la noche.
+                        </p>
+
+                        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+                            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+                                <i class="fa-regular fa-calendar-days text-primary text-2xl mb-3"></i>
+                                <h3 class="font-bold text-ink mb-1">Atencion</h3>
+                                <p class="text-sm text-muted">Miercoles a Lunes</p>
+                            </div>
+                            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+                                <i class="fa-regular fa-clock text-primary text-2xl mb-3"></i>
+                                <h3 class="font-bold text-ink mb-1">Horario</h3>
+                                <p class="text-sm text-muted">11:30 AM a 9:30 PM</p>
+                            </div>
+                            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+                                <i class="fa-solid fa-door-closed text-primary text-2xl mb-3"></i>
+                                <h3 class="font-bold text-ink mb-1">Cerrado</h3>
+                                <p class="text-sm text-muted">Martes</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 items-start bg-white border border-orange-100 rounded-2xl p-5">
+                            <i class="fa-solid fa-circle-info text-primary text-lg mt-1"></i>
+                            <p class="text-sm text-muted leading-relaxed">
+                                A partir de este miercoles comenzamos a atender desde las 11:30 A.M. en Restaurante El Patio, Sucursal Juigalpa.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -914,11 +987,11 @@
                 setInterval(() => {
                     loadDeferredImage(slides[(currentSlide + 1) % slides.length]);
                     goToHeroSlide(currentSlide + 1);
-                }, 4200);
+                }, 3300);
             }
         });
 
-        carousels.forEach(carousel => {
+        carousels.forEach((carousel, carouselIndex) => {
             const track = carousel.querySelector('.food-carousel-track');
             const slides = carousel.querySelectorAll('.food-carousel-slide');
             const dotsContainer = carousel.querySelector('.carousel-dots');
@@ -965,10 +1038,17 @@
             }
 
             if (!reduceMotion && slides.length > 1) {
-                setInterval(() => {
+                const intervalDelay = 3200 + ((carouselIndex % 3) * 350);
+                const startDelay = 450 + (carouselIndex * 260);
+                const advanceCarousel = () => {
                     loadSlideImage((currentSlide + 1) % slides.length);
                     goToSlide(currentSlide + 1);
-                }, 3600);
+                };
+
+                setTimeout(() => {
+                    advanceCarousel();
+                    setInterval(advanceCarousel, intervalDelay);
+                }, startDelay);
             }
         });
 
