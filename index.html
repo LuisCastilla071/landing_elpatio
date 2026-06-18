@@ -19,9 +19,9 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#ea580c',     /* Naranja Fuego */
-                        secondary: '#b45309',   /* Ámbar / Madera Cálida */
-                        ink: '#111827',         /* Fondo Oscuro Elegante */
+                        primary: '#ea580c',
+                        secondary: '#b45309',
+                        ink: '#111827',
                         muted: '#6b7280',
                         soft: '#fbfbfb'
                     },
@@ -73,24 +73,13 @@
             color: #fff;
             box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
             transition: all 180ms ease;
+            position: relative;
+            overflow: hidden;
         }
         .btn-primary:hover {
             background: #c2410c;
             transform: translateY(-2px);
         }
-
-        .btn-primary,
-        .floating-whatsapp,
-        .menu-item,
-        #ambiente img {
-            will-change: transform;
-        }
-
-        .btn-primary {
-            position: relative;
-            overflow: hidden;
-        }
-
         .btn-primary::after {
             content: "";
             position: absolute;
@@ -100,12 +89,10 @@
             transition: transform 520ms ease;
             pointer-events: none;
         }
-
         .btn-primary:hover::after {
             transform: translateX(120%);
         }
 
-        /* Hero adaptado perfectamente a celulares sin generar scroll y encuadrando la cabaña */
         .hero-section {
             min-height: calc(100svh - 80px);
             background: #111827;
@@ -118,7 +105,6 @@
             z-index: 0;
             overflow: hidden;
         }
-
         .hero-bg-carousel::after {
             content: "";
             position: absolute;
@@ -138,7 +124,6 @@
             transform: scale(1.03);
             transition: opacity 900ms ease, transform 4200ms ease;
         }
-
         .hero-slide.active {
             opacity: 1;
             transform: scale(1);
@@ -151,12 +136,10 @@
         .hero-content > * {
             animation: hero-reveal 720ms ease both;
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
         }
-
         .hero-content > *:nth-child(2) { animation-delay: 120ms; }
         .hero-content > *:nth-child(3) { animation-delay: 220ms; }
         .hero-content > *:nth-child(4) { animation-delay: 320ms; }
@@ -166,12 +149,10 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-
         .filter-btn {
             white-space: nowrap;
             transition: color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
         }
-
         .filter-btn:hover {
             transform: translateY(-1px);
         }
@@ -179,7 +160,6 @@
         .hero-content .grid > div {
             transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
         }
-
         .hero-content .grid > div:hover {
             transform: translateY(-4px);
             background-color: rgba(255, 255, 255, 0.16);
@@ -192,7 +172,6 @@
             gap: 0.5rem;
             margin-top: 1rem;
         }
-
         .menu-details span {
             display: inline-flex;
             align-items: center;
@@ -209,16 +188,26 @@
 
         .menu-item {
             animation: card-rise 650ms ease both;
+            transition: all 400ms ease;
         }
-
         .menu-item:nth-child(2) { animation-delay: 80ms; }
         .menu-item:nth-child(3) { animation-delay: 160ms; }
         .menu-item:nth-child(4) { animation-delay: 240ms; }
         .menu-item:nth-child(5) { animation-delay: 320ms; }
         .menu-item:nth-child(6) { animation-delay: 400ms; }
+        .menu-item:nth-child(7) { animation-delay: 480ms; }
+        .menu-item:nth-child(8) { animation-delay: 560ms; }
+        .menu-item:nth-child(9) { animation-delay: 640ms; }
 
         .menu-item:hover {
             transform: translateY(-6px);
+        }
+        .menu-item.hidden-filter {
+            opacity: 0;
+            transform: scale(0.92);
+            position: absolute;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .food-carousel {
@@ -228,19 +217,16 @@
             background: #f3f4f6;
             contain: layout paint;
         }
-
         .food-carousel-track {
             display: flex;
             width: 100%;
             height: 100%;
             transition: transform 320ms ease;
         }
-
         .food-carousel-slide {
             min-width: 100%;
             height: 100%;
         }
-
         .food-carousel-slide img {
             width: 100%;
             height: 100%;
@@ -248,7 +234,6 @@
             display: block;
             background: #f3f4f6;
         }
-
         .carousel-dots {
             position: absolute;
             left: 50%;
@@ -257,8 +242,8 @@
             display: flex;
             gap: 0.4rem;
             transform: translateX(-50%);
+            pointer-events: none;
         }
-
         .carousel-dot {
             width: 0.55rem;
             height: 0.55rem;
@@ -266,14 +251,9 @@
             background: rgba(255, 255, 255, 0.62);
             transition: background-color 180ms ease, transform 180ms ease;
         }
-
         .carousel-dot.active {
             background: #ea580c;
             transform: scale(1.2);
-        }
-
-        .food-carousel .carousel-dots {
-            pointer-events: none;
         }
 
         .floating-whatsapp {
@@ -303,25 +283,13 @@
         }
 
         @keyframes hero-reveal {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes card-rise {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes image-breathe {
@@ -330,49 +298,18 @@
         }
 
         @keyframes hero-image-reveal {
-            from {
-                opacity: 0;
-                transform: translateY(-10px) scale(1.02);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(-10px) scale(1.02); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         #ambiente .group:hover img {
             animation: image-breathe 3s ease-in-out infinite;
         }
 
-        #success-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.72);
-            backdrop-filter: blur(4px);
-        }
-        #success-modal.active { display: flex; }
-
         .action-selector input:checked + div {
             border-color: #ea580c;
             background-color: #fff7ed;
             color: #ea580c;
-        }
-
-        /* Estilos de transición para las tarjetas del menú filtrable */
-        .menu-item {
-            transition: all 400ms ease;
-        }
-        .menu-item.hidden-filter {
-            opacity: 0;
-            transform: scale(0.92);
-            position: absolute;
-            visibility: hidden;
-            pointer-events: none;
         }
 
         @media (max-width: 640px) {
@@ -383,10 +320,8 @@
                 justify-content: flex-start;
                 min-height: auto;
                 background-color: #111827;
-                background-image: none;
                 padding-top: 0;
             }
-
             .hero-mobile-image {
                 display: block;
                 position: relative;
@@ -395,11 +330,9 @@
                 overflow: hidden;
                 animation: hero-image-reveal 720ms ease both;
             }
-
             .hero-bg-carousel {
                 display: none;
             }
-
             .hero-mobile-image img {
                 width: 100%;
                 height: 100%;
@@ -407,11 +340,9 @@
                 object-position: center center;
                 display: block;
             }
-
             .hero-content {
                 padding-top: 2.5rem;
             }
-
             .filter-group {
                 display: grid;
                 grid-template-columns: 1fr;
@@ -420,7 +351,6 @@
                 margin-inline: auto;
                 border-radius: 1rem;
             }
-
             .filter-btn {
                 width: 100%;
                 padding-inline: 1rem;
@@ -443,6 +373,7 @@
 
 <body class="antialiased">
 
+    <!-- ===== NAV ===== -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-gray-100" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -487,36 +418,37 @@
         </div>
     </nav>
 
+    <!-- ===== WHATSAPP FLOTANTE ===== -->
     <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <!-- ===== MAIN ===== -->
     <main class="pt-20 w-full max-w-full overflow-hidden">
 
+        <!-- ===== HERO ===== -->
         <section id="inicio" class="hero-section relative flex items-center justify-center py-12 sm:py-24 text-center text-white w-full">
             <div class="hero-bg-carousel" data-hero-carousel aria-hidden="true">
                 <img src="imagenes/Fondo 1.jpg" alt="" class="hero-slide active" decoding="async" fetchpriority="high">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 4.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 5.jpg" alt="" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="" class="hero-slide" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="" class="hero-slide" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 4.jpg" alt="" class="hero-slide" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 5.jpg" alt="" class="hero-slide" loading="lazy" decoding="async">
             </div>
             <div class="hero-mobile-image" data-hero-carousel>
                 <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio" class="hero-slide active" decoding="async" fetchpriority="high">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="Terraza de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="Interiores de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 4.jpg" alt="Ambiente de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 5.jpg" alt="Nueva vista de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async" fetchpriority="low">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 2.jpg" alt="Terraza de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 3.jpg" alt="Interiores de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 4.jpg" alt="Ambiente de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Fondo 5.jpg" alt="Nueva vista de Restaurante El Patio" class="hero-slide" loading="lazy" decoding="async">
             </div>
             <div class="hero-content max-w-4xl mx-auto px-4 w-full overflow-hidden flex flex-col items-center">
                 <h1 class="text-3xl sm:text-6xl font-black leading-tight mb-6 tracking-tight max-w-full px-2" data-aos="fade-up">
                     El rincón del buen sabor en Juigalpa
                 </h1>
-
                 <p class="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed px-2" data-aos="fade-up" data-aos-delay="100">
                     Disfruta de una experiencia gastronómica única con carnes al carbón, platillos tradicionales, tragos bien fríos y el mejor ambiente de la ciudad.
                 </p>
-
                 <div class="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md px-4 sm:px-0" data-aos="fade-up" data-aos-delay="180">
                     <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="btn-primary px-8 py-4 text-base w-full sm:w-auto">
                         <i class="fa-brands fa-whatsapp"></i> Ver Menú / Ordenar Delivery
@@ -525,40 +457,28 @@
                         Ver Especialidades
                     </a>
                 </div>
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl mx-auto mt-12 sm:mt-16 text-left px-4 sm:px-0" data-aos="fade-up" data-aos-delay="250">
                     <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
                         <i class="fa-solid fa-heart text-primary text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-black">1.5K</p>
-                            <p class="text-xs text-gray-300">Seguidores</p>
-                        </div>
+                        <div><p class="text-xl sm:text-2xl font-black">1.5K</p><p class="text-xs text-gray-300">Seguidores</p></div>
                     </div>
                     <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
                         <i class="fa-solid fa-fire text-primary text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-black">Al Carbón</p>
-                            <p class="text-xs text-gray-300">Sabor Auténtico</p>
-                        </div>
+                        <div><p class="text-xl sm:text-2xl font-black">Al Carbón</p><p class="text-xs text-gray-300">Sabor Auténtico</p></div>
                     </div>
                     <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
                         <i class="fa-solid fa-motorcycle text-primary text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-black">Delivery</p>
-                            <p class="text-xs text-gray-300">Rápido y Calientito</p>
-                        </div>
+                        <div><p class="text-xl sm:text-2xl font-black">Delivery</p><p class="text-xs text-gray-300">Rápido y Calientito</p></div>
                     </div>
                     <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10 flex items-center gap-4 sm:block">
                         <i class="fa-solid fa-cloud-sun text-primary text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-black">Confortable</p>
-                            <p class="text-xs text-gray-300">Siéntete en casa</p>
-                        </div>
+                        <div><p class="text-xl sm:text-2xl font-black">Confortable</p><p class="text-xs text-gray-300">Siéntete en casa</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ===== ESPECIALIDADES ===== -->
         <section id="especialidades" class="py-20 bg-soft w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-aos="fade-up">
@@ -567,24 +487,25 @@
                         <h2 class="text-3xl md:text-5xl font-black text-ink mb-4">Nuestras Especialidades</h2>
                         <p class="text-muted text-base">Filtra y explora las combinaciones perfectas de sazón tradicional directo a tu mesa.</p>
                     </div>
-                    
                     <div class="filter-group gap-2 self-center md:self-auto bg-gray-200/60 p-1.5 rounded-2xl border border-gray-200/40">
                         <button type="button" data-filter="all" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 bg-primary text-white shadow-sm">Todos</button>
                         <button type="button" data-filter="asados" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-ink transition-all duration-200">Asados & Cortes</button>
                         <button type="button" data-filter="antojos" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-ink transition-all duration-200">Antojos Express</button>
+                        <button type="button" data-filter="bebidas" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-gray-600 hover:text-ink transition-all duration-200">Bebidas</button>
                     </div>
                 </div>
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 relative min-h-[400px]" id="menu-grid">
                     
+                    <!-- 1. Nachos El Patio -->
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
                         <div class="food-carousel" data-carousel>
                             <div class="food-carousel-track">
                                 <div class="food-carousel-slide">
-                                    <img src="imagenes/Comida 1.jpg" alt="Antojos y Especialidades El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="imagenes/Comida 1.jpg" alt="Nachos El Patio" loading="lazy" decoding="async">
                                 </div>
                                 <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 1-2.jpg" alt="Otra vista de Antojos y Especialidades El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 1-2.jpg" alt="Nachos El Patio - Vista 2" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="carousel-dots" aria-hidden="true"></div>
@@ -600,14 +521,15 @@
                         </div>
                     </div>
                     
+                    <!-- 2. Carne Asada -->
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="100">
                         <div class="food-carousel" data-carousel>
                             <div class="food-carousel-track">
                                 <div class="food-carousel-slide">
-                                    <img src="imagenes/Comida 2.jpg" alt="Asados y Cortes El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="imagenes/Comida 2.jpg" alt="Carne Asada" loading="lazy" decoding="async">
                                 </div>
                                 <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 2-2.jpg" alt="Otra vista de Asados y Cortes El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 2-2.jpg" alt="Carne Asada - Vista 2" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="carousel-dots" aria-hidden="true"></div>
@@ -623,37 +545,39 @@
                         </div>
                     </div>
 
+                    <!-- 3. Burrito (NUEVO - usando Comida 3) -->
                     <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="200">
                         <div class="food-carousel" data-carousel>
                             <div class="food-carousel-track">
                                 <div class="food-carousel-slide">
-                                    <img src="imagenes/Comida 3.jpg" alt="Deditos de Pollo con Papas El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="imagenes/Comida 3.jpg" alt="Burrito con Pico de Gallo" loading="lazy" decoding="async">
                                 </div>
                                 <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 3-3.jpg" alt="Otra vista de Deditos de Pollo con Papas El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 3-3.jpg" alt="Burrito - Vista 2" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="carousel-dots" aria-hidden="true"></div>
                         </div>
                         <div class="p-6">
-                            <h3 class="font-bold text-xl text-ink mb-2">Fajitas de Pollo Doraditas</h3>
-                            <p class="text-muted text-sm mb-4">Fajitas de pollo empanizadas al momento, crujientes por fuera y suaves por dentro, con papas fritas calientes, pico de gallo y aderezo cremoso para acompañar.</p>
-                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Favorito Familiar</span>
+                            <h3 class="font-bold text-xl text-ink mb-2">Burrito con Pico de Gallo</h3>
+                            <p class="text-muted text-sm mb-4">Burrito relleno con carne sazonada, frijoles, arroz y queso derretido. Acompañado de pico de gallo fresco y nuestra salsa de la casa. ¡Una explosión de sabor!</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Favorito del Día</span>
                             <div class="menu-details">
-                                <span><i class="fa-solid fa-drumstick-bite text-primary"></i> Pollo</span>
-                                <span><i class="fa-solid fa-child-reaching text-primary"></i> Para todos</span>
+                                <span><i class="fa-solid fa-wheat-awn text-primary"></i> Tortilla de harina</span>
+                                <span><i class="fa-solid fa-pepper-hot text-primary"></i> Salsa de la casa</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up">
+                    <!-- 4. Nachos Supremos -->
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="240">
                         <div class="food-carousel" data-carousel>
                             <div class="food-carousel-track">
                                 <div class="food-carousel-slide">
-                                    <img src="imagenes/Comida 4.jpg" alt="Nachos Supremos con Carne El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="imagenes/Comida 4.jpg" alt="Nachos Supremos" loading="lazy" decoding="async">
                                 </div>
                                 <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 4-2.jpg" alt="Otra vista de Nachos Supremos con Carne El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 4-2.jpg" alt="Nachos Supremos - Vista 2" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="carousel-dots" aria-hidden="true"></div>
@@ -669,14 +593,15 @@
                         </div>
                     </div>
 
-                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="100">
+                    <!-- 5. Tacos Dorados -->
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="280">
                         <div class="food-carousel" data-carousel>
                             <div class="food-carousel-track">
                                 <div class="food-carousel-slide">
-                                    <img src="imagenes/Comida 5.jpg" alt="Tacos Dorados de la Casa El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="imagenes/Comida 5.jpg" alt="Tacos Dorados" loading="lazy" decoding="async">
                                 </div>
                                 <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 5-2.jpg" alt="Otra vista de Tacos Dorados de la Casa El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 5-2.jpg" alt="Tacos Dorados - Vista 2" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="carousel-dots" aria-hidden="true"></div>
@@ -692,14 +617,15 @@
                         </div>
                     </div>
 
-                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="200">
+                    <!-- 6. Quesadilla Asada -->
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="asados" data-aos="fade-up" data-aos-delay="320">
                         <div class="food-carousel" data-carousel>
                             <div class="food-carousel-track">
                                 <div class="food-carousel-slide">
-                                    <img src="imagenes/Comida 6.jpg" alt="Quesadilla Asada El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="imagenes/Comida 6.jpg" alt="Quesadilla Asada" loading="lazy" decoding="async">
                                 </div>
                                 <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 6-2.jpg" alt="Otra vista de Quesadilla Asada El Patio" loading="lazy" decoding="async" fetchpriority="low">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 6-2.jpg" alt="Quesadilla Asada - Vista 2" loading="lazy" decoding="async">
                                 </div>
                             </div>
                             <div class="carousel-dots" aria-hidden="true"></div>
@@ -715,10 +641,83 @@
                         </div>
                     </div>
 
+                    <!-- 7. Comida 7 (NUEVO) -->
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="antojos" data-aos="fade-up" data-aos-delay="360">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Comida 7.jpg" alt="Especialidad El Patio" loading="lazy" decoding="async">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Comida 7-2.jpg" alt="Especialidad El Patio - Vista 2" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Especialidad de la Casa</h3>
+                            <p class="text-muted text-sm mb-4">Nuestra creación exclusiva preparada con los mejores ingredientes y el toque único de sazón que nos caracteriza. ¡Pregunta por ella al hacer tu pedido!</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Exclusivo</span>
+                            <div class="menu-details">
+                                <span><i class="fa-solid fa-star text-primary"></i> Recomendado</span>
+                                <span><i class="fa-solid fa-utensils text-primary"></i> Sazón única</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Michelada con Toña (Bebidas) -->
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="bebidas" data-aos="fade-up" data-aos-delay="400">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Bebida 1.jpg" alt="Michelada con Toña" loading="lazy" decoding="async">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Bebida 1.jpg" alt="Michelada - Vista 2" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Michelada con Toña</h3>
+                            <p class="text-muted text-sm mb-4">La clásica michelada preparada con cerveza Toña bien fría, jugo de limón, sales especiales y un toque de picante. Perfecta para acompañar tus platillos favoritos.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Bebida Refrescante</span>
+                            <div class="menu-details">
+                                <span><i class="fa-solid fa-beer-mug-empty text-primary"></i> Cerveza Toña</span>
+                                <span><i class="fa-solid fa-lemon text-primary"></i> Limón natural</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Frescos Naturales (Bebidas) -->
+                    <div class="menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md" data-category="bebidas" data-aos="fade-up" data-aos-delay="440">
+                        <div class="food-carousel" data-carousel>
+                            <div class="food-carousel-track">
+                                <div class="food-carousel-slide">
+                                    <img src="imagenes/Bebida 2.jpg" alt="Frescos Naturales" loading="lazy" decoding="async">
+                                </div>
+                                <div class="food-carousel-slide">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="imagenes/Bebida 2.jpg" alt="Frescos Naturales - Vista 2" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+                            <div class="carousel-dots" aria-hidden="true"></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-ink mb-2">Frescos Naturales</h3>
+                            <p class="text-muted text-sm mb-4">Refrescantes bebidas preparadas con frutas de temporada. Disfruta de nuestra ensalada de frutas, cacao natural y más opciones saludables y deliciosas.</p>
+                            <span class="text-primary font-bold text-xs bg-orange-50 px-3 py-1.5 rounded-lg">Natural y Saludable</span>
+                            <div class="menu-details">
+                                <span><i class="fa-solid fa-apple-whole text-primary"></i> Frutas frescas</span>
+                                <span><i class="fa-solid fa-seedling text-primary"></i> Cacao natural</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
+        <!-- ===== AMBIENTE ===== -->
         <section id="ambiente" class="py-20 bg-white w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -728,7 +727,6 @@
                         <p class="text-muted text-lg mb-6 leading-relaxed">
                             En <strong>El Patio Chontales</strong> nos esmeramos por darte no solo la mejor comida, sino un espacio acogedor y fresco al aire libre. Disfruta de nuestras noches temáticas, música en vivo y la tranquilidad de nuestra icónica terraza.
                         </p>
-                        
                         <div class="grid sm:grid-cols-2 gap-4 mb-8">
                             <div class="flex gap-3 items-start">
                                 <i class="fa-solid fa-square-check text-primary text-lg mt-1"></i>
@@ -745,12 +743,10 @@
                                 </div>
                             </div>
                         </div>
-
                         <a href="#contacto" class="inline-flex items-center gap-3 bg-ink text-white font-bold px-6 py-3.5 rounded-full shadow-lg hover:bg-slate-800 transition">
                             <i class="fa-regular fa-calendar-check text-primary"></i> Reservar / Hacer Pedido
                         </a>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-aos="fade-left">
                         <div class="relative aspect-[4/3] sm:aspect-auto rounded-2xl overflow-hidden shadow group">
                             <img src="imagenes/Fondo 2.jpg" alt="Terraza El Patio" class="h-full sm:h-64 w-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" decoding="async">
@@ -763,20 +759,19 @@
             </div>
         </section>
 
+        <!-- ===== HORARIO ===== -->
         <section id="horario" class="py-20 bg-soft w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-center">
                     <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100" data-aos="fade-right">
-                        <img src="imagenes/Horario.jpg" alt="Nuevo horario de atencion de Restaurante El Patio Juigalpa" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                        <img src="imagenes/Horario.jpg" alt="Horario Restaurante El Patio" class="w-full h-full object-cover" loading="lazy" decoding="async">
                     </div>
-
                     <div data-aos="fade-left">
                         <p class="text-primary font-black uppercase tracking-wide mb-2">Nuevo Horario</p>
                         <h2 class="text-3xl md:text-5xl font-black text-ink mb-6">Te esperamos en Sucursal Juigalpa</h2>
                         <p class="text-muted text-lg mb-8 leading-relaxed">
                             Restaurante El Patio actualiza su horario de atencion para que disfrutes tus comidas favoritas desde el mediodia hasta la noche.
                         </p>
-
                         <div class="grid sm:grid-cols-3 gap-4 mb-8">
                             <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
                                 <i class="fa-regular fa-calendar-days text-primary text-2xl mb-3"></i>
@@ -794,7 +789,6 @@
                                 <p class="text-sm text-muted">Martes</p>
                             </div>
                         </div>
-
                         <div class="flex gap-3 items-start bg-white border border-orange-100 rounded-2xl p-5">
                             <i class="fa-solid fa-circle-info text-primary text-lg mt-1"></i>
                             <p class="text-sm text-muted leading-relaxed">
@@ -806,17 +800,16 @@
             </div>
         </section>
 
+        <!-- ===== CONTACTO ===== -->
         <section id="contacto" class="py-20 bg-ink text-white w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
-                    
                     <div data-aos="fade-right">
                         <p class="text-primary font-black uppercase tracking-wide mb-2">Atención Inmediata</p>
                         <h2 class="text-3xl md:text-5xl font-black mb-6">¿Cómo te ayudamos?</h2>
                         <p class="text-gray-300 text-lg mb-8">
                             Ponte en contacto directo con nuestro equipo. Rellena el asistente rápido para iniciar un chat personalizado en WhatsApp según lo que quieras pedir.
                         </p>
-
                         <div class="space-y-6">
                             <div class="flex gap-4">
                                 <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
@@ -827,7 +820,6 @@
                                     <p class="text-gray-300">Del Supermercado El Camarada 1/2 cuadra al Sur, Juigalpa, Chontales, Nicaragua.</p>
                                 </div>
                             </div>
-
                             <div class="flex gap-4">
                                 <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
                                     <i class="fa-solid fa-phone"></i>
@@ -837,7 +829,6 @@
                                     <p class="text-gray-300">+505 5878 5729</p>
                                 </div>
                             </div>
-
                             <div class="flex gap-4">
                                 <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
                                     <i class="fa-solid fa-hashtag"></i>
@@ -850,10 +841,10 @@
                         </div>
                     </div>
 
+                    <!-- ===== FORMULARIO (SIN MODAL) ===== -->
                     <div class="bg-white text-ink p-8 rounded-2xl shadow-glow" data-aos="fade-left">
                         <h3 class="text-2xl font-black mb-1">Contacto Directo vía WhatsApp</h3>
                         <p class="text-muted text-sm mb-6">Selecciona el tipo de consulta para coordinar rápidamente con nuestro personal.</p>
-                        
                         <form id="contact-form" class="space-y-5">
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué deseas realizar?</label>
@@ -874,33 +865,29 @@
                                     </label>
                                 </div>
                             </div>
-
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 mb-1" for="name">Tu Nombre</label>
                                 <input id="name" type="text" placeholder="Ej. Carlos Mendoza" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary">
                             </div>
-
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 mb-1" for="phone">Número de Celular</label>
                                 <input id="phone" type="tel" placeholder="Ej. 5878 5729" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary">
                             </div>
-
                             <div>
                                 <label class="block text-sm font-bold text-slate-700 mb-1" for="message" id="message-label">Detalles del Pedido (Platos y Dirección)</label>
                                 <textarea id="message" rows="3" placeholder="Ej. Quiero consultar por 2 órdenes de deditos de pollo y un asado para enviar a..." required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"></textarea>
                             </div>
-
                             <button type="submit" class="btn-primary w-full py-4 text-base">
                                 <i class="fa-brands fa-whatsapp text-lg"></i> <span id="submit-btn-text">Enviar Consulta / Pedido</span>
                             </button>
                         </form>
                     </div>
-
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="bg-slate-950 text-white border-t border-white/5 py-12 w-full max-w-full overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
             <div class="grid md:grid-cols-3 gap-8 mb-8 items-center">
@@ -926,25 +913,12 @@
         </div>
     </footer>
 
-    <div id="success-modal">
-        <div class="bg-white border border-primary p-8 rounded-2xl max-w-sm w-full text-center relative transform scale-95 transition-transform duration-300">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary text-3xl mx-auto mb-4">
-                <i class="fa-solid fa-comment-dots"></i>
-            </div>
-            <h3 class="text-2xl font-black text-ink mb-1" id="modal-title">Abriendo WhatsApp</h3>
-            <p class="text-muted text-sm mb-6" id="modal-desc">Te estamos redirigiendo para coordinar tu solicitud directamente con nuestro equipo de atención.</p>
-            <button id="close-modal-btn" type="button" class="btn-primary w-full py-3">Entendido</button>
-        </div>
-    </div>
-
+    <!-- ===== SCRIPTS ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 700, once: true, offset: 50 });
 
         const contactForm = document.getElementById('contact-form');
-        const successModal = document.getElementById('success-modal');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -952,8 +926,6 @@
         const messageLabel = document.getElementById('message-label');
         const messageInput = document.getElementById('message');
         const submitBtnText = document.getElementById('submit-btn-text');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDesc = document.getElementById('modal-desc');
 
         const filterButtons = document.querySelectorAll('.filter-btn');
         const menuItems = document.querySelectorAll('.menu-item');
@@ -963,11 +935,11 @@
 
         function loadDeferredImage(image) {
             if (!image?.dataset.src) return;
-
             image.src = image.dataset.src;
             image.removeAttribute('data-src');
         }
 
+        // ===== HERO CAROUSEL =====
         heroCarousels.forEach(carousel => {
             const slides = carousel.querySelectorAll('.hero-slide');
             let currentSlide = 0;
@@ -975,14 +947,12 @@
             function goToHeroSlide(index) {
                 currentSlide = (index + slides.length) % slides.length;
                 loadDeferredImage(slides[currentSlide]);
-
                 slides.forEach((slide, slideIndex) => {
                     slide.classList.toggle('active', slideIndex === currentSlide);
                 });
             }
 
             goToHeroSlide(0);
-
             if (!reduceMotion && slides.length > 1) {
                 setInterval(() => {
                     loadDeferredImage(slides[(currentSlide + 1) % slides.length]);
@@ -991,6 +961,7 @@
             }
         });
 
+        // ===== FOOD CAROUSEL =====
         carousels.forEach((carousel, carouselIndex) => {
             const track = carousel.querySelector('.food-carousel-track');
             const slides = carousel.querySelectorAll('.food-carousel-slide');
@@ -1017,7 +988,6 @@
                 currentSlide = (index + slides.length) % slides.length;
                 loadSlideImage(currentSlide);
                 track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
                 dots.forEach((dot, dotIndex) => {
                     dot.classList.toggle('active', dotIndex === currentSlide);
                 });
@@ -1026,14 +996,13 @@
             goToSlide(0);
 
             if ('IntersectionObserver' in window) {
-                const carouselObserver = new IntersectionObserver((entries, observer) => {
+                const carouselObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (!entry.isIntersecting) return;
                         loadSlideImage((currentSlide + 1) % slides.length);
-                        observer.unobserve(carousel);
+                        carouselObserver.unobserve(carousel);
                     });
                 }, { rootMargin: '160px' });
-
                 carouselObserver.observe(carousel);
             }
 
@@ -1044,7 +1013,6 @@
                     loadSlideImage((currentSlide + 1) % slides.length);
                     goToSlide(currentSlide + 1);
                 };
-
                 setTimeout(() => {
                     advanceCarousel();
                     setInterval(advanceCarousel, intervalDelay);
@@ -1052,6 +1020,7 @@
             }
         });
 
+        // ===== FILTROS =====
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterButtons.forEach(b => {
@@ -1073,24 +1042,22 @@
             });
         });
 
+        // ===== FORMULARIO - CAMBIO DE TIPO =====
         document.querySelectorAll('input[name="order_type"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 if (this.value === 'reserva') {
                     messageLabel.textContent = "Detalles de la Reserva (Fecha, Hora y N° de Personas)";
-                    messageInput.placeholder = "Ej. Deseo reservar una mesa para 4 personas este sábado a las 7:00 PM para celebrar...";
+                    messageInput.placeholder = "Ej. Deseo reservar una mesa para 4 personas este sábado a las 7:00 PM";
                     submitBtnText.textContent = "Solicitar Reserva por WhatsApp";
-                    modalTitle.textContent = "Solicitud Lista";
-                    modalDesc.textContent = "Te estamos redirigiendo para verificar la disponibilidad de mesas con un asesor.";
                 } else {
                     messageLabel.textContent = "Detalles del Pedido (Platos y Dirección)";
-                    messageInput.placeholder = "Ej. Quiero consultar por 2 órdenes de deditos de pollo y un asado para enviar a...";
+                    messageInput.placeholder = "Ej. Quiero consultar por 2 órdenes de deditos de pollo y un asado";
                     submitBtnText.textContent = "Enviar Consulta / Pedido";
-                    modalTitle.textContent = "Abriendo WhatsApp";
-                    modalDesc.textContent = "Te estamos redirigiendo para coordinar tu pedido y calcular el costo de delivery.";
                 }
             });
         });
 
+        // ===== MENÚ MÓVIL =====
         function closeMobileMenu() {
             mobileMenu.style.maxHeight = "0px";
             mobileMenu.classList.remove('border-b');
@@ -1118,9 +1085,7 @@
         });
 
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
-            });
+            link.addEventListener('click', () => closeMobileMenu());
         });
 
         document.addEventListener('click', (e) => {
@@ -1129,36 +1094,41 @@
             }
         });
 
+        // ===== FORMULARIO - ENVÍO (SIN MODAL) =====
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const message = document.getElementById('message').value.trim();
             const type = document.querySelector('input[name="order_type"]:checked').value;
-            
+
+            if (!name || !phone || !message) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
             let baseText = "";
             if (type === 'reserva') {
-                baseText = `Hola El Patio Chontales, mi nombre es ${name} (Tel: ${phone}). Me gustaría solicitar una reserva con los siguientes detalles: ${message}`;
+                baseText =
+                    `Hola El Patio Chontales, mi nombre es ${name} (Tel: ${phone}). Me gustaría solicitar una reserva con los siguientes detalles: ${message}`;
             } else {
-                baseText = `Hola El Patio Chontales, mi nombre es ${name} (Tel: ${phone}). Quisiera realizar una consulta/pedido con los siguientes detalles: ${message}`;
+                baseText =
+                    `Hola El Patio Chontales, mi nombre es ${name} (Tel: ${phone}). Quisiera realizar una consulta/pedido con los siguientes detalles: ${message}`;
             }
-            
+
             const whatsappUrl = `https://wa.me/50558785729?text=${encodeURIComponent(baseText)}`;
             window.open(whatsappUrl, '_blank');
-
-            successModal.classList.add('active');
             contactForm.reset();
         });
 
-        closeModalBtn.addEventListener('click', () => {
-            successModal.classList.remove('active');
-        });
-
+        // ===== NAVEGACIÓN SUAVE =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(targetId);
                 if (target) {
                     const headerOffset = 80;
                     const elementPosition = target.getBoundingClientRect().top;
