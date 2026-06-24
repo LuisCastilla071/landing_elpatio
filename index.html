@@ -11,7 +11,6 @@
     <meta name="keywords"
         content="Restaurante El Patio Juigalpa, El Patio Chontales, comida Juigalpa, tacos Juigalpa, asados Chontales, carne asada Nicaragua, delivery Juigalpa">
 
-    <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -183,18 +182,6 @@
             z-index: 2;
         }
 
-        .hero-content>*:nth-child(2) {
-            animation-delay: 120ms;
-        }
-
-        .hero-content>*:nth-child(3) {
-            animation-delay: 220ms;
-        }
-
-        .hero-content>*:nth-child(4) {
-            animation-delay: 320ms;
-        }
-
         .floating-whatsapp {
             position: fixed;
             right: clamp(1rem, 3vw, 2rem);
@@ -293,34 +280,73 @@
             background: linear-gradient(135deg, #111827 0%, #1a2332 100%);
         }
 
-        /* ===== CATEGORY TABS ===== */
-        .category-tab {
-            transition: all 0.3s ease;
+        /* ===== CATEGORÍA VISUAL (CUADRADO CON FOTO) ===== */
+        .category-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
             cursor: pointer;
-            user-select: none;
-            border: 2px solid transparent;
-            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            aspect-ratio: 1 / 1;
+            background: #f3f4f6;
+            border: 3px solid transparent;
         }
 
-        .category-tab:hover {
-            background: #fff7ed;
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(234, 88, 12, 0.2);
+        }
+
+        .category-card.active {
             border-color: #ea580c;
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.2), 0 20px 60px rgba(234, 88, 12, 0.15);
         }
 
-        .category-tab.active {
-            background: #ea580c;
+        .category-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 1rem 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
             color: white;
-            border-color: #ea580c;
-            box-shadow: 0 8px 25px rgba(234, 88, 12, 0.3);
+            text-align: center;
         }
 
-        .category-tab.active .category-icon {
+        .category-card .overlay h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .category-card .overlay p {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .category-card .count-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(234, 88, 12, 0.9);
             color: white;
-        }
-
-        .category-tab .category-icon {
-            transition: color 0.3s ease;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            backdrop-filter: blur(4px);
         }
 
         /* ===== MENU ITEMS ===== */
@@ -332,47 +358,10 @@
             height: 100%;
         }
 
-        .menu-item:nth-child(2) {
-            animation-delay: 80ms;
-        }
-
-        .menu-item:nth-child(3) {
-            animation-delay: 160ms;
-        }
-
-        .menu-item:nth-child(4) {
-            animation-delay: 240ms;
-        }
-
-        .menu-item:nth-child(5) {
-            animation-delay: 320ms;
-        }
-
-        .menu-item:nth-child(6) {
-            animation-delay: 400ms;
-        }
-
-        .menu-item:nth-child(7) {
-            animation-delay: 480ms;
-        }
-
-        .menu-item:nth-child(8) {
-            animation-delay: 560ms;
-        }
-
-        .menu-item:nth-child(9) {
-            animation-delay: 640ms;
-        }
-
         .menu-item:hover {
             transform: translateY(-6px);
         }
 
-        .menu-item.hidden {
-            display: none;
-        }
-
-        /* Contenedor de contenido de la tarjeta que crece */
         .menu-item .card-body {
             flex: 1;
             display: flex;
@@ -464,15 +453,75 @@
             color: #ea580c;
         }
 
+        /* ===== CATEGORÍAS GRID ===== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* ===== SUBVISTA (subpágina) ===== */
+        .subview {
+            display: none;
+            animation: subview-in 350ms ease both;
+        }
+
+        .subview.active {
+            display: block;
+        }
+
+        .subview .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            border: none;
+            background: transparent;
+            font-size: 0.95rem;
+        }
+
+        .subview .back-btn:hover {
+            color: #ea580c;
+        }
+
+        .subview .back-btn i {
+            font-size: 0.85rem;
+        }
+
+        @keyframes subview-in {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes subview-out {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+        }
+
+        /* ===== KEYFRAMES ===== */
         @keyframes pulse-green {
             0% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
             }
-
             70% {
                 box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
             }
-
             100% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
             }
@@ -483,7 +532,6 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -495,7 +543,6 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -503,12 +550,10 @@
         }
 
         @keyframes image-breathe {
-
             0%,
             100% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.035);
             }
@@ -519,7 +564,6 @@
                 opacity: 0;
                 transform: translateY(-10px) scale(1.02);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -530,6 +574,7 @@
             animation: image-breathe 3s ease-in-out infinite;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
             .hero-section {
                 display: flex;
@@ -576,35 +621,6 @@
                 font-size: 1.15rem;
             }
 
-            .category-tabs {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
-                padding-bottom: 4px;
-                gap: 0.5rem;
-            }
-
-            .category-tabs::-webkit-scrollbar {
-                height: 3px;
-            }
-
-            .category-tabs::-webkit-scrollbar-thumb {
-                background: #ea580c;
-                border-radius: 10px;
-            }
-
-            .category-tab {
-                flex-shrink: 0;
-                scroll-snap-align: start;
-                font-size: 0.8rem;
-                padding: 0.5rem 1rem;
-            }
-
-            .category-tab:hover {
-                transform: none !important;
-            }
-
             .food-carousel {
                 height: 16rem;
             }
@@ -618,6 +634,23 @@
 
             .menu-item .btn-primary {
                 justify-content: center;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .category-card .overlay h3 {
+                font-size: 0.9rem;
+            }
+
+            .category-card .overlay p {
+                font-size: 0.65rem;
+            }
+
+            .subview .grid {
+                grid-template-columns: 1fr !important;
             }
 
             footer .grid {
@@ -645,18 +678,6 @@
                 font-size: 1.2rem;
             }
 
-            footer .flex.justify-center {
-                justify-content: center;
-            }
-
-            footer .grid .text-left {
-                text-align: center !important;
-            }
-
-            footer .grid .md\\:text-left {
-                text-align: center !important;
-            }
-
             section {
                 padding-top: 2.5rem !important;
                 padding-bottom: 2.5rem !important;
@@ -679,20 +700,12 @@
                 font-size: 0.8rem !important;
             }
 
-            .hero-content .grid {
-                margin-top: 1.5rem !important;
-            }
-
             #contacto .p-8 {
                 padding: 1.5rem !important;
             }
 
             #ambiente .grid-cols-2 {
                 gap: 0.5rem;
-            }
-
-            .bg-white.rounded-2xl.p-5 {
-                padding: 0.75rem !important;
             }
 
             .menu-item .btn-primary {
@@ -715,6 +728,16 @@
             section {
                 padding-top: 5rem !important;
                 padding-bottom: 5rem !important;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
@@ -899,26 +922,33 @@
             </div>
         </section>
 
-        <!-- ===== MENÚ CON CATEGORÍAS ===== -->
+        <!-- ===== MENÚ CON CATEGORÍAS VISUALES ===== -->
         <section id="menu" class="py-10 sm:py-20 bg-soft w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div class="text-center mb-8 sm:mb-10" data-aos="fade-up">
-                    <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Explora Nuestro
-                        Menú</p>
-                    <h2 class="text-2xl sm:text-5xl font-black text-ink">Nuestras Especialidades</h2>
-                    <p class="text-muted text-sm sm:text-base mt-2 sm:mt-3">Selecciona una categoría para ver los
-                        platillos disponibles.</p>
+                <!-- ===== VISTA PRINCIPAL (categorías) ===== -->
+                <div id="main-view">
+                    <div class="text-center mb-8 sm:mb-10" data-aos="fade-up">
+                        <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Explora
+                            Nuestro Menú</p>
+                        <h2 class="text-2xl sm:text-5xl font-black text-ink">Nuestras Especialidades</h2>
+                        <p class="text-muted text-sm sm:text-base mt-2 sm:mt-3">Selecciona una categoría para ver los
+                            platillos disponibles.</p>
+                    </div>
+
+                    <div class="categories-grid" id="categories-grid">
+                        <!-- Renderizado por JS -->
+                    </div>
                 </div>
 
-                <!-- ===== CATEGORÍAS (TABS) ===== -->
-                <div class="category-tabs flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8" id="category-tabs">
-                    <!-- Renderizado por JS -->
-                </div>
-
-                <!-- ===== GRID DE PLATILLOS ===== -->
-                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 relative min-h-[400px]" id="menu-grid">
-                    <!-- Renderizado por JS -->
+                <!-- ===== SUBVISTA (productos por categoría) ===== -->
+                <div class="subview" id="subview">
+                    <button class="back-btn" id="back-btn">
+                        <i class="fa-solid fa-arrow-left"></i> Volver al menú
+                    </button>
+                    <div id="subview-body">
+                        <!-- Renderizado por JS -->
+                    </div>
                 </div>
 
             </div>
@@ -1198,12 +1228,11 @@
         </section>
     </main>
 
-    <!-- ===== FOOTER MEJORADO ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="bg-slate-950 text-white border-t border-white/5 py-8 sm:py-12 w-full max-w-full overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
 
-                <!-- Logo y nombre -->
                 <div class="flex flex-col items-center gap-2">
                     <img src="imagenes/Logo.jpg" alt="Logo El Patio"
                         class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-xl opacity-95" loading="lazy"
@@ -1215,7 +1244,6 @@
                     </div>
                 </div>
 
-                <!-- Horario -->
                 <div class="text-center">
                     <h5 class="font-bold text-white text-base sm:text-lg mb-2">Horario</h5>
                     <p class="text-sm text-gray-400">Miércoles a Lunes</p>
@@ -1223,7 +1251,6 @@
                     <p class="text-sm text-gray-500">Cerrado los Martes</p>
                 </div>
 
-                <!-- Contacto -->
                 <div class="text-center">
                     <h5 class="font-bold text-white text-base sm:text-lg mb-2">Contacto</h5>
                     <p class="text-sm text-gray-400">
@@ -1234,7 +1261,6 @@
                     </p>
                 </div>
 
-                <!-- Redes y enlaces -->
                 <div class="text-center">
                     <h5 class="font-bold text-white text-base sm:text-lg mb-2">Síguenos</h5>
                     <div class="flex justify-center gap-3">
@@ -1277,6 +1303,7 @@
             id: 'asados',
             category: "Asados & Cortes",
             icon: "fa-solid fa-fire",
+            img: "imagenes/Comida 2.jpg",
             items: [
                 { name: "Carne Asada Chontaleña", desc: "Corte jugoso preparado al carbón, con gallopinto, tajadas verdes, queso chontaleño y ensalada fresca.", price: "C$ 250", img: "imagenes/Comida 2.jpg" },
                 { name: "Pupusas El Patio", desc: "Tortilla dorada a la plancha con queso bien fundido y carne preparada al carbón.", price: "C$ 190", img: "imagenes/Comida 6.jpg" }
@@ -1285,6 +1312,7 @@
             id: 'antojos',
             category: "Antojos Express",
             icon: "fa-solid fa-utensils",
+            img: "imagenes/Comida 1.jpg",
             items: [
                 { name: "Nachos El Patio con Queso", desc: "Nachos doraditos servidos con carne, queso fundido, pico de gallo fresco y el toque de salsa de la casa.", price: "C$ 180", img: "imagenes/Comida 1.jpg" },
                 { name: "Fajitas de Pollo", desc: "Fajitas de pollo empanizadas al momento, crujientes por fuera y suaves por dentro.", price: "C$ 220", img: "imagenes/Comida 3.jpg" },
@@ -1296,6 +1324,7 @@
             id: 'bebidas',
             category: "Bebidas",
             icon: "fa-solid fa-mug-saucer",
+            img: "imagenes/Bebida 1.jpg",
             items: [
                 { name: "Michelada con Toña", desc: "La clásica michelada preparada con cerveza Toña bien fría, jugo de limón, sales especiales y un toque de picante.", price: "C$ 90", img: "imagenes/Bebida 1.jpg" },
                 { name: "Frescos Naturales", desc: "Refrescantes bebidas preparadas con frutas de temporada.", price: "C$ 70", img: "imagenes/Bebida 2.jpg" }
@@ -1303,197 +1332,145 @@
         }];
 
         // ===== REFERENCIAS =====
-        const tabsContainer = document.getElementById('category-tabs');
-        const menuGrid = document.getElementById('menu-grid');
-        let activeCategory = 'all';
+        const categoriesGrid = document.getElementById('categories-grid');
+        const mainView = document.getElementById('main-view');
+        const subview = document.getElementById('subview');
+        const subviewBody = document.getElementById('subview-body');
+        const backBtn = document.getElementById('back-btn');
 
-        // ===== RENDERIZAR CATEGORÍAS =====
-        function renderTabs() {
-            tabsContainer.innerHTML = '';
-            const allTab = document.createElement('button');
-            allTab.className =
-                `category-tab flex items-center gap-1 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all bg-primary text-white border-primary`;
-            allTab.innerHTML = `
-                    <i class="fa-solid fa-grid-2 category-icon"></i>
-                    Todos
-                    <span class="text-[10px] sm:text-xs opacity-60 ml-0.5 sm:ml-1">(${menuData.reduce((acc, cat) => acc + cat.items.length, 0)})</span>
-                `;
-            allTab.dataset.category = 'all';
-            allTab.addEventListener('click', () => switchCategory('all'));
-            tabsContainer.appendChild(allTab);
+        // ===== RENDERIZAR CATEGORÍAS VISUALES =====
+        function renderCategories() {
+            categoriesGrid.innerHTML = '';
+
+            const allCard = document.createElement('div');
+            allCard.className =
+                `category-card active cursor-pointer border-2 border-primary shadow-lg shadow-primary/20`;
+            allCard.innerHTML = `
+                        <img src="imagenes/Fondo 1.jpg" alt="Todos los platillos" loading="lazy">
+                        <div class="overlay">
+                            <h3>Todos</h3>
+                            <p>${menuData.reduce((acc, cat) => acc + cat.items.length, 0)} platillos</p>
+                        </div>
+                        <span class="count-badge">${menuData.reduce((acc, cat) => acc + cat.items.length, 0)}</span>
+                    `;
+            allCard.addEventListener('click', () => openSubview('all'));
+            categoriesGrid.appendChild(allCard);
 
             menuData.forEach(cat => {
-                const tab = document.createElement('button');
-                tab.className =
-                    `category-tab flex items-center gap-1 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all bg-white text-gray-700 border-gray-200`;
-                tab.innerHTML = `
-                        <i class="${cat.icon} category-icon text-base sm:text-lg"></i>
-                        ${cat.category}
-                        <span class="text-[10px] sm:text-xs opacity-60 ml-0.5 sm:ml-1">(${cat.items.length})</span>
-                    `;
-                tab.dataset.category = cat.id;
-                tab.addEventListener('click', () => switchCategory(cat.id));
-                tabsContainer.appendChild(tab);
+                const card = document.createElement('div');
+                card.className = `category-card`;
+                card.innerHTML = `
+                            <img src="${cat.img}" alt="${cat.category}" loading="lazy">
+                            <div class="overlay">
+                                <h3>${cat.category}</h3>
+                                <p>${cat.items.length} platillos</p>
+                            </div>
+                            <span class="count-badge">${cat.items.length}</span>
+                        `;
+                card.dataset.category = cat.id;
+                card.addEventListener('click', () => openSubview(cat.id));
+                categoriesGrid.appendChild(card);
             });
         }
 
-        // ===== RENDERIZAR PLATILLOS =====
-        function renderItems(categoryId) {
-            menuGrid.innerHTML = '';
+        // ===== ABRIR SUBVISTA =====
+        function openSubview(categoryId) {
+            // Actualizar estado visual de las tarjetas
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('active', 'border-2', 'border-primary', 'shadow-lg', 'shadow-primary/20');
+                if (card.dataset.category === categoryId || (categoryId === 'all' && !card.dataset.category)) {
+                    card.classList.add('active', 'border-2', 'border-primary', 'shadow-lg', 'shadow-primary/20');
+                }
+            });
 
+            let categoryName = 'Todos';
             let itemsToShow = [];
+
             if (categoryId === 'all') {
+                categoryName = 'Todos los Platillos';
                 menuData.forEach(cat => {
-                    itemsToShow = itemsToShow.concat(cat.items.map(item => ({ ...item, category: cat.id })));
+                    itemsToShow = itemsToShow.concat(cat.items.map(item => ({ ...item, category: cat.id,
+                        categoryName: cat.category })));
                 });
             } else {
                 const category = menuData.find(c => c.id === categoryId);
                 if (category) {
-                    itemsToShow = category.items.map(item => ({ ...item, category: category.id }));
+                    categoryName = category.category;
+                    itemsToShow = category.items.map(item => ({ ...item, category: category.id,
+                        categoryName: category.category }));
                 }
             }
 
-            itemsToShow.forEach((item, index) => {
-                let detailsHTML = '';
-                if (item.category === 'asados') {
-                    detailsHTML = `
-                            <span><i class="fa-solid fa-fire text-primary"></i> Parrilla</span>
-                            <span><i class="fa-solid fa-utensils text-primary"></i> Plato fuerte</span>
-                        `;
-                } else if (item.category === 'antojos') {
-                    detailsHTML = `
-                            <span><i class="fa-solid fa-utensils text-primary"></i> Para compartir</span>
-                            <span><i class="fa-solid fa-pepper-hot text-primary"></i> Salsa aparte</span>
-                        `;
-                } else {
-                    detailsHTML = `
-                            <span><i class="fa-solid fa-beer-mug-empty text-primary"></i> Refrescante</span>
-                            <span><i class="fa-solid fa-lemon text-primary"></i> Natural</span>
-                        `;
-                }
+            // Renderizar en la subvista
+            subviewBody.innerHTML = `
+                        <h2 class="font-heading text-2xl sm:text-3xl font-black text-ink mb-1">${categoryName}</h2>
+                        <p class="text-muted text-sm mb-6">${itemsToShow.length} platillos disponibles</p>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            ${itemsToShow.map((item, index) => {
+                                let detailsHTML = '';
+                                if (item.category === 'asados') {
+                                    detailsHTML = `
+                                        <span><i class="fa-solid fa-fire text-primary"></i> Parrilla</span>
+                                        <span><i class="fa-solid fa-utensils text-primary"></i> Plato fuerte</span>
+                                    `;
+                                } else if (item.category === 'antojos') {
+                                    detailsHTML = `
+                                        <span><i class="fa-solid fa-utensils text-primary"></i> Para compartir</span>
+                                        <span><i class="fa-solid fa-pepper-hot text-primary"></i> Salsa aparte</span>
+                                    `;
+                                } else {
+                                    detailsHTML = `
+                                        <span><i class="fa-solid fa-beer-mug-empty text-primary"></i> Refrescante</span>
+                                        <span><i class="fa-solid fa-lemon text-primary"></i> Natural</span>
+                                    `;
+                                }
 
-                const div = document.createElement('div');
-                div.className =
-                    `menu-item bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden group hover:shadow-md`;
-                div.setAttribute('data-category', item.category);
-                div.style.animationDelay = `${index * 80}ms`;
-
-                div.innerHTML = `
-                        <div class="food-carousel" data-carousel>
-                            <div class="food-carousel-track">
-                                <div class="food-carousel-slide">
-                                    <img src="${item.img}" alt="${item.name}" loading="lazy" decoding="async">
-                                </div>
-                                <div class="food-carousel-slide">
-                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-                                        data-src="${item.img.replace('.jpg', '-2.jpg')}" alt="${item.name} - Vista 2"
-                                        loading="lazy" decoding="async">
-                                </div>
-                            </div>
-                            <div class="carousel-dots" aria-hidden="true"></div>
-                        </div>
-                        <div class="p-4 sm:p-6 card-body">
-                            <div class="flex items-start justify-between">
-                                <h3 class="font-bold text-base sm:text-xl text-ink mb-1 sm:mb-2">${item.name}</h3>
-                                <span class="font-black text-primary text-sm sm:text-lg">${item.price}</span>
-                            </div>
-                            <p class="text-muted text-xs sm:text-sm mb-2 sm:mb-4">${item.desc}</p>
-                            <span class="text-primary font-bold text-[10px] sm:text-xs bg-orange-50 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg self-start">${menuData.find(c => c.id === item.category)?.category || ''}</span>
-                            <div class="menu-details">
-                                ${detailsHTML}
-                            </div>
-                            <div class="btn-wrapper">
-                                <button onclick="orderItem('${item.name}')" class="w-full btn-primary py-3 sm:py-3 text-sm sm:text-base">
-                                    <i class="fa-brands fa-whatsapp"></i> Ordenar por WhatsApp
-                                </button>
-                            </div>
+                                return `
+                                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-all">
+                                        <div class="h-48 overflow-hidden">
+                                            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover">
+                                        </div>
+                                        <div class="p-4">
+                                            <div class="flex items-start justify-between">
+                                                <h3 class="font-bold text-lg text-ink">${item.name}</h3>
+                                                <span class="font-black text-primary text-base">${item.price}</span>
+                                            </div>
+                                            <p class="text-muted text-sm mt-1">${item.desc}</p>
+                                            <div class="flex flex-wrap gap-1.5 mt-3">
+                                                ${detailsHTML}
+                                            </div>
+                                            <button onclick="orderItem('${item.name}')" class="w-full btn-primary mt-3 py-2.5 text-sm">
+                                                <i class="fa-brands fa-whatsapp"></i> Ordenar por WhatsApp
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     `;
 
-                menuGrid.appendChild(div);
-            });
+            // Ocultar vista principal, mostrar subvista
+            mainView.style.display = 'none';
+            subview.classList.add('active');
 
-            setTimeout(() => {
-                initCarousels();
-            }, 100);
+            // Scroll al inicio de la sección
+            const menuSection = document.getElementById('menu');
+            if (menuSection) {
+                const headerOffset = 80;
+                const elementPosition = menuSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
         }
 
-        // ===== CAMBIAR CATEGORÍA =====
-        function switchCategory(categoryId) {
-            activeCategory = categoryId;
-
-            document.querySelectorAll('.category-tab').forEach(tab => {
-                tab.classList.remove('active', 'bg-primary', 'text-white', 'border-primary');
-                tab.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
-                if (tab.dataset.category === categoryId) {
-                    tab.classList.add('active', 'bg-primary', 'text-white', 'border-primary');
-                    tab.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
-                }
-            });
-
-            renderItems(categoryId);
+        // ===== CERRAR SUBVISTA (volver) =====
+        function closeSubview() {
+            subview.classList.remove('active');
+            mainView.style.display = 'block';
+            window.scrollTo({ top: document.getElementById('menu').offsetTop - 80, behavior: 'smooth' });
         }
 
-        // ===== INICIALIZAR CARRUSELES =====
-        function initCarousels() {
-            const carousels = document.querySelectorAll('[data-carousel]');
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            carousels.forEach((carousel, carouselIndex) => {
-                const track = carousel.querySelector('.food-carousel-track');
-                const slides = carousel.querySelectorAll('.food-carousel-slide');
-                const dotsContainer = carousel.querySelector('.carousel-dots');
-                let currentSlide = 0;
-
-                function loadSlideImage(index) {
-                    const image = slides[index]?.querySelector('img[data-src]');
-                    if (image?.dataset.src) {
-                        image.src = image.dataset.src;
-                        image.removeAttribute('data-src');
-                    }
-                }
-
-                if (dotsContainer) {
-                    dotsContainer.innerHTML = '';
-                    slides.forEach((_, index) => {
-                        const dot = document.createElement('button');
-                        dot.type = 'button';
-                        dot.className = 'carousel-dot';
-                        dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
-                        dot.tabIndex = -1;
-                        dotsContainer.appendChild(dot);
-                    });
-                }
-
-                const dots = dotsContainer?.querySelectorAll('.carousel-dot') || [];
-
-                function goToSlide(index) {
-                    currentSlide = (index + slides.length) % slides.length;
-                    loadSlideImage(currentSlide);
-                    if (track) {
-                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-                    }
-                    dots.forEach((dot, dotIndex) => {
-                        dot.classList.toggle('active', dotIndex === currentSlide);
-                    });
-                }
-
-                goToSlide(0);
-
-                if (!reduceMotion && slides.length > 1) {
-                    const intervalDelay = 3200 + ((carouselIndex % 3) * 350);
-                    const startDelay = 450 + (carouselIndex * 260);
-                    const advanceCarousel = () => {
-                        loadSlideImage((currentSlide + 1) % slides.length);
-                        goToSlide(currentSlide + 1);
-                    };
-                    setTimeout(() => {
-                        advanceCarousel();
-                        setInterval(advanceCarousel, intervalDelay);
-                    }, startDelay);
-                }
-            });
-        }
+        backBtn.addEventListener('click', closeSubview);
 
         // ===== FUNCIÓN PARA ORDENAR =====
         function orderItem(name) {
@@ -1580,7 +1557,7 @@
         const submitBtnText = document.getElementById('submit-btn-text');
 
         document.querySelectorAll('input[name="order_type"]').forEach(radio => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 if (this.value === 'reserva') {
                     messageLabel.textContent = "Detalles de la Reserva (Fecha, Hora y N° de Personas)";
                     messageInput.placeholder =
@@ -1623,7 +1600,7 @@
 
         // ===== SCROLL SUAVE =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 e.preventDefault();
@@ -1638,8 +1615,7 @@
         });
 
         // ===== INICIALIZAR =====
-        renderTabs();
-        renderItems('all');
+        renderCategories();
     </script>
 </body>
 
