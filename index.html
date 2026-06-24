@@ -473,23 +473,30 @@
         .subview .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            color: #6b7280;
-            font-weight: 600;
+            gap: 0.75rem;
+            color: #374151;
+            font-weight: 700;
+            font-size: 1.15rem;
             transition: color 0.2s ease;
             cursor: pointer;
-            padding: 0.5rem 0;
-            border: none;
-            background: transparent;
-            font-size: 0.95rem;
+            padding: 0.75rem 1.25rem;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .subview .back-btn:hover {
             color: #ea580c;
+            border-color: #ea580c;
+            background: #fff7ed;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(234, 88, 12, 0.1);
         }
 
         .subview .back-btn i {
-            font-size: 0.85rem;
+            font-size: 1.1rem;
         }
 
         @keyframes subview-in {
@@ -500,17 +507,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes subview-out {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(12px);
             }
         }
 
@@ -651,6 +647,13 @@
 
             .subview .grid {
                 grid-template-columns: 1fr !important;
+            }
+
+            .subview .back-btn {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+                width: 100%;
+                justify-content: center;
             }
 
             footer .grid {
@@ -1338,6 +1341,9 @@
         const subviewBody = document.getElementById('subview-body');
         const backBtn = document.getElementById('back-btn');
 
+        let currentCategoryId = 'all';
+        let isSubViewOpen = false;
+
         // ===== RENDERIZAR CATEGORÍAS VISUALES =====
         function renderCategories() {
             categoriesGrid.innerHTML = '';
@@ -1373,8 +1379,72 @@
             });
         }
 
+        // ===== FUNCIÓN PARA INICIALIZAR CARRUSELES EN SUBVISTA =====
+        function initCarouselsInSubview() {
+            const carousels = subviewBody.querySelectorAll('[data-carousel]');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            carousels.forEach((carousel, carouselIndex) => {
+                const track = carousel.querySelector('.food-carousel-track');
+                const slides = carousel.querySelectorAll('.food-carousel-slide');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                let currentSlide = 0;
+
+                function loadSlideImage(index) {
+                    const image = slides[index]?.querySelector('img[data-src]');
+                    if (image?.dataset.src) {
+                        image.src = image.dataset.src;
+                        image.removeAttribute('data-src');
+                    }
+                }
+
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    slides.forEach((_, index) => {
+                        const dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.className = 'carousel-dot';
+                        dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
+                        dot.tabIndex = -1;
+                        dotsContainer.appendChild(dot);
+                    });
+                }
+
+                const dots = dotsContainer?.querySelectorAll('.carousel-dot') || [];
+
+                function goToSlide(index) {
+                    currentSlide = (index + slides.length) % slides.length;
+                    loadSlideImage(currentSlide);
+                    if (track) {
+                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                    }
+                    dots.forEach((dot, dotIndex) => {
+                        dot.classList.toggle('active', dotIndex === currentSlide);
+                    });
+                }
+
+                goToSlide(0);
+
+                if (!reduceMotion && slides.length > 1) {
+                    const intervalDelay = 3200 + ((carouselIndex % 3) * 350);
+                    const startDelay = 450 + (carouselIndex * 260);
+                    const advanceCarousel = () => {
+                        loadSlideImage((currentSlide + 1) % slides.length);
+                        goToSlide(currentSlide + 1);
+                    };
+                    setTimeout(() => {
+                        advanceCarousel();
+                        setInterval(advanceCarousel, intervalDelay);
+                    }, startDelay);
+                }
+            });
+        }
+
         // ===== ABRIR SUBVISTA =====
         function openSubview(categoryId) {
+            currentCategoryId = categoryId;
+            isSubViewOpen = true;
+
             // Actualizar estado visual de las tarjetas
             document.querySelectorAll('.category-card').forEach(card => {
                 card.classList.remove('active', 'border-2', 'border-primary', 'shadow-lg', 'shadow-primary/20');
@@ -1401,12 +1471,12 @@
                 }
             }
 
-            // Renderizar en la subvista
+            // Renderizar en la subvista con carruseles
             subviewBody.innerHTML = `
                         <h2 class="font-heading text-2xl sm:text-3xl font-black text-ink mb-1">${categoryName}</h2>
                         <p class="text-muted text-sm mb-6">${itemsToShow.length} platillos disponibles</p>
                         <div class="grid sm:grid-cols-2 gap-4">
-                            ${itemsToShow.map((item, index) => {
+                            ${itemsToShow.map((item) => {
                                 let detailsHTML = '';
                                 if (item.category === 'asados') {
                                     detailsHTML = `
@@ -1427,8 +1497,18 @@
 
                                 return `
                                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-all">
-                                        <div class="h-48 overflow-hidden">
-                                            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover">
+                                        <div class="food-carousel" data-carousel>
+                                            <div class="food-carousel-track">
+                                                <div class="food-carousel-slide">
+                                                    <img src="${item.img}" alt="${item.name}" loading="lazy" decoding="async">
+                                                </div>
+                                                <div class="food-carousel-slide">
+                                                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+                                                        data-src="${item.img.replace('.jpg', '-2.jpg')}" alt="${item.name} - Vista 2"
+                                                        loading="lazy" decoding="async">
+                                                </div>
+                                            </div>
+                                            <div class="carousel-dots" aria-hidden="true"></div>
                                         </div>
                                         <div class="p-4">
                                             <div class="flex items-start justify-between">
@@ -1453,6 +1533,11 @@
             mainView.style.display = 'none';
             subview.classList.add('active');
 
+            // Inicializar carruseles en la subvista
+            setTimeout(() => {
+                initCarouselsInSubview();
+            }, 150);
+
             // Scroll al inicio de la sección
             const menuSection = document.getElementById('menu');
             if (menuSection) {
@@ -1461,16 +1546,49 @@
                 const offsetPosition = elementPosition + window.scrollY - headerOffset;
                 window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
             }
+
+            // Agregar estado al historial del navegador
+            const categoryNameForUrl = categoryId === 'all' ? 'todos' : categoryId;
+            const newUrl = `${window.location.pathname}?categoria=${categoryNameForUrl}#menu`;
+            window.history.pushState({ category: categoryId }, '', newUrl);
         }
 
         // ===== CERRAR SUBVISTA (volver) =====
         function closeSubview() {
+            isSubViewOpen = false;
             subview.classList.remove('active');
             mainView.style.display = 'block';
+
+            // Scroll al inicio de la sección menú
             window.scrollTo({ top: document.getElementById('menu').offsetTop - 80, behavior: 'smooth' });
+
+            // Limpiar la URL (remover parámetros)
+            if (window.location.search.includes('categoria')) {
+                const cleanUrl = window.location.pathname + '#menu';
+                window.history.pushState({}, '', cleanUrl);
+            }
         }
 
-        backBtn.addEventListener('click', closeSubview);
+        // ===== EVENTO PARA EL BOTÓN "ATRÁS" DEL NAVEGADOR =====
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.category) {
+                // Si el estado tiene una categoría, abrir esa subvista
+                openSubview(event.state.category);
+            } else if (isSubViewOpen) {
+                // Si estábamos en subvista y no hay estado, volver
+                closeSubview();
+            }
+        });
+
+        // ===== EVENTOS =====
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeSubview();
+            // Limpiar el historial
+            if (window.location.search.includes('categoria')) {
+                window.history.replaceState({}, '', window.location.pathname + '#menu');
+            }
+        });
 
         // ===== FUNCIÓN PARA ORDENAR =====
         function orderItem(name) {
@@ -1616,6 +1734,20 @@
 
         // ===== INICIALIZAR =====
         renderCategories();
+
+        // ===== VERIFICAR PARÁMETROS DE URL AL CARGAR =====
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoriaParam = urlParams.get('categoria');
+        if (categoriaParam) {
+            const categoryId = categoriaParam === 'todos' ? 'all' : categoriaParam;
+            // Verificar que la categoría exista
+            const categoryExists = categoryId === 'all' || menuData.some(cat => cat.id === categoryId);
+            if (categoryExists) {
+                setTimeout(() => {
+                    openSubview(categoryId);
+                }, 300);
+            }
+        }
     </script>
 </body>
 
