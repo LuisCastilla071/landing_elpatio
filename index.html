@@ -245,12 +245,12 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.08);
             color: #fff;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             transition: all 300ms ease;
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
@@ -375,9 +375,10 @@
             padding-top: 0.75rem;
         }
 
+        /* ===== FOOD CAROUSEL - MÁS ALTO (VERTICAL) ===== */
         .food-carousel {
             position: relative;
-            height: 18rem;
+            height: 22rem;
             overflow: hidden;
             background: #f3f4f6;
             contain: layout paint;
@@ -428,7 +429,7 @@
             transform: scale(1.2);
         }
 
-        /* ===== MENU DETAILS - CORREGIDO ===== */
+        /* ===== MENU DETAILS ===== */
         .menu-details {
             display: flex;
             flex-wrap: wrap;
@@ -537,7 +538,6 @@
                 opacity: 0;
                 transform: translateY(12px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -549,11 +549,9 @@
             0% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
             }
-
             70% {
                 box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
             }
-
             100% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
             }
@@ -564,7 +562,6 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -576,7 +573,6 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -584,12 +580,10 @@
         }
 
         @keyframes image-breathe {
-
             0%,
             100% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.035);
             }
@@ -600,18 +594,16 @@
                 opacity: 0;
                 transform: translateY(-10px) scale(1.02);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
         }
 
-        #ambiente .group:hover img {
-            animation: image-breathe 3s ease-in-out infinite;
-        }
+        /* ============================================================ */
+        /* ===== RESPONSIVE MÓVIL ===== */
+        /* ============================================================ */
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
             .hero-section {
                 display: flex;
@@ -659,7 +651,7 @@
             }
 
             .food-carousel {
-                height: 16rem;
+                height: 18rem;
             }
 
             .btn-primary {
@@ -901,8 +893,8 @@
                     data-src="imagenes/Fondo 5.jpg" alt="" class="hero-slide" loading="lazy" decoding="async">
             </div>
             <div class="hero-mobile-image" data-hero-carousel>
-                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio"
-                    class="hero-slide active" decoding="async" fetchpriority="high">
+                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio" class="hero-slide active"
+                    decoding="async" fetchpriority="high">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
                     data-src="imagenes/Fondo 2.jpg" alt="Terraza de Restaurante El Patio" class="hero-slide"
                     loading="lazy" decoding="async">
@@ -941,116 +933,46 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl mx-auto mt-6 sm:mt-12 text-left px-4 sm:px-0"
+                <!-- ===== TARJETAS DE ESTADÍSTICAS - DISEÑO HORIZONTAL COMPACTO ===== -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 w-full max-w-3xl mx-auto mt-6 sm:mt-12"
                     data-aos="fade-up" data-aos-delay="250">
+
                     <div
-                        class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 flex items-center gap-3 sm:gap-4 sm:block transition hover:bg-white/20">
-                        <i class="fa-solid fa-heart text-primary text-lg sm:text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-lg sm:text-2xl font-black">1.5K</p>
-                            <p class="text-xs text-gray-300">Seguidores</p>
+                        class="bg-white/10 backdrop-blur-md rounded-xl border border-white/10 p-2.5 sm:p-3.5 flex items-center justify-center gap-2 sm:gap-3 transition hover:bg-white/20">
+                        <i class="fa-solid fa-heart text-primary text-base sm:text-lg"></i>
+                        <div class="text-left">
+                            <p class="text-base sm:text-xl font-black leading-tight">1.5K</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300 leading-tight">Seguidores</p>
                         </div>
                     </div>
+
                     <div
-                        class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 flex items-center gap-3 sm:gap-4 sm:block transition hover:bg-white/20">
-                        <i class="fa-solid fa-fire text-primary text-lg sm:text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-lg sm:text-2xl font-black">Al Carbón</p>
-                            <p class="text-xs text-gray-300">Sabor Auténtico</p>
+                        class="bg-white/10 backdrop-blur-md rounded-xl border border-white/10 p-2.5 sm:p-3.5 flex items-center justify-center gap-2 sm:gap-3 transition hover:bg-white/20">
+                        <i class="fa-solid fa-fire text-primary text-base sm:text-lg"></i>
+                        <div class="text-left">
+                            <p class="text-base sm:text-xl font-black leading-tight">Al Carbón</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300 leading-tight">Sabor Auténtico</p>
                         </div>
                     </div>
+
                     <div
-                        class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 flex items-center gap-3 sm:gap-4 sm:block transition hover:bg-white/20">
-                        <i class="fa-solid fa-clock text-primary text-lg sm:text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-lg sm:text-2xl font-black">15 min</p>
-                            <p class="text-xs text-gray-300">Delivery</p>
+                        class="bg-white/10 backdrop-blur-md rounded-xl border border-white/10 p-2.5 sm:p-3.5 flex items-center justify-center gap-2 sm:gap-3 transition hover:bg-white/20">
+                        <i class="fa-solid fa-clock text-primary text-base sm:text-lg"></i>
+                        <div class="text-left">
+                            <p class="text-base sm:text-xl font-black leading-tight">15 min</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300 leading-tight">Delivery</p>
                         </div>
                     </div>
+
                     <div
-                        class="bg-white/10 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 flex items-center gap-3 sm:gap-4 sm:block transition hover:bg-white/20">
-                        <i class="fa-solid fa-star text-primary text-lg sm:text-xl sm:mb-1"></i>
-                        <div>
-                            <p class="text-lg sm:text-2xl font-black">5.0 ★</p>
-                            <p class="text-xs text-gray-300">Calificación</p>
+                        class="bg-white/10 backdrop-blur-md rounded-xl border border-white/10 p-2.5 sm:p-3.5 flex items-center justify-center gap-2 sm:gap-3 transition hover:bg-white/20">
+                        <i class="fa-solid fa-star text-primary text-base sm:text-lg"></i>
+                        <div class="text-left">
+                            <p class="text-base sm:text-xl font-black leading-tight">5.0</p>
+                            <p class="text-[10px] sm:text-xs text-gray-300 leading-tight">Calificación</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ===== MENÚ CON CATEGORÍAS VISUALES ===== -->
-        <section id="menu" class="py-10 sm:py-20 bg-soft w-full max-w-full overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                <!-- ===== VISTA PRINCIPAL (categorías) ===== -->
-                <div id="main-view">
-                    <div class="text-center mb-8 sm:mb-10" data-aos="fade-up">
-                        <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Explora
-                            Nuestro Menú</p>
-                        <h2 class="text-2xl sm:text-5xl font-black text-ink">Nuestras Especialidades</h2>
-                        <p class="text-muted text-sm sm:text-base mt-2 sm:mt-3">Selecciona una categoría para ver los
-                            platillos disponibles.</p>
-                    </div>
-
-                    <div class="categories-grid" id="categories-grid">
-                        <!-- Renderizado por JS -->
-                    </div>
-                </div>
-
-                <!-- ===== SUBVISTA (productos por categoría) ===== -->
-                <div class="subview" id="subview">
-                    <button class="back-btn" id="back-btn">
-                        <i class="fa-solid fa-arrow-left"></i> Volver al menú
-                    </button>
-                    <div id="subview-body">
-                        <!-- Renderizado por JS -->
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ===== PLATILLO DESTACADO ===== -->
-        <section id="destacado" class="py-10 sm:py-20 bg-white w-full max-w-full overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
-                    <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">🌟
-                        Recomendación del Patio</p>
-                    <h2 class="text-2xl sm:text-5xl font-black text-ink">Platillo Destacado</h2>
-                </div>
-
-                <div class="featured-card rounded-3xl overflow-hidden shadow-glow-lg">
-                    <div class="grid md:grid-cols-2 gap-0">
-                        <div class="relative h-56 sm:h-64 md:h-auto">
-                            <img src="imagenes/Comida 2.jpg" alt="Carne Asada Chontaleña"
-                                class="w-full h-full object-cover" loading="lazy" decoding="async">
-                        </div>
-                        <div class="p-6 sm:p-8 md:p-12 flex flex-col justify-center text-white">
-                            <h3 class="text-2xl sm:text-4xl font-black mb-2 sm:mb-3">Carne Asada Chontaleña</h3>
-                            <p class="text-gray-300 text-base sm:text-lg mb-3 sm:mb-4 leading-relaxed">
-                                Nuestro plato estrella: carne jugosa al carbón, gallopinto, tajadas verdes, queso
-                                chontaleño y ensalada fresca. Una experiencia que te transporta al campo.
-                            </p>
-                            <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-                                <span
-                                    class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">
-                                    <i class="fa-solid fa-fire text-primary"></i> Al Carbón
-                                </span>
-                                <span
-                                    class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">
-                                    <i class="fa-solid fa-utensils text-primary"></i> Plato Fuerte
-                                </span>
-                            </div>
-                            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
-                                <span class="text-2xl sm:text-3xl font-black text-primary">C$ 250</span>
-                                <a href="https://wa.me/50558785729?text=Hola%2C%20quiero%20ordenar%20la%20Carne%20Asada%20Chontale%C3%B1a"
-                                    target="_blank" class="btn-primary px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                                    <i class="fa-brands fa-whatsapp"></i> Ordenar Ahora
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1060,8 +982,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
                     <div data-aos="fade-right">
-                        <p class="text-secondary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Siéntete
-                            como en casa</p>
+                        <p class="text-secondary font-black uppercase tracking-wide mb-2">Siéntete como en casa</p>
                         <h2 class="text-2xl sm:text-5xl font-black text-ink mb-4 sm:mb-6">Un Ambiente Único</h2>
                         <p class="text-muted text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
                             En <strong>El Patio Chontales</strong> nos esmeramos por darte no solo la mejor comida, sino
@@ -1072,17 +993,15 @@
                             <div class="flex gap-3 items-start">
                                 <i class="fa-solid fa-square-check text-primary text-base sm:text-lg mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold text-ink text-sm sm:text-base">Espacio al aire libre</h4>
-                                    <p class="text-xs text-muted">Espacios frescos ideales para relajarse en Familia.
-                                    </p>
+                                    <h4 class="font-bold text-ink">Espacio al aire libre</h4>
+                                    <p class="text-muted">Espacios frescos ideales para relajarse en Familia.</p>
                                 </div>
                             </div>
                             <div class="flex gap-3 items-start">
                                 <i class="fa-solid fa-square-check text-primary text-base sm:text-lg mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold text-ink text-sm sm:text-base">Celebraciones y Reuniones</h4>
-                                    <p class="text-xs text-muted">Perfecto para cumpleaños, salidas familiares o entre
-                                        amigos.</p>
+                                    <h4 class="font-bold text-ink">Celebraciones y Reuniones</h4>
+                                    <p class="text-muted">Perfecto para cumpleaños, salidas familiares o entre amigos.</p>
                                 </div>
                             </div>
                         </div>
@@ -1092,22 +1011,22 @@
                         </a>
                     </div>
                     <div class="grid grid-cols-2 gap-2 sm:gap-4" data-aos="fade-left">
-                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow group">
+                        <div class="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow">
                             <img src="imagenes/Fondo 2.jpg" alt="Terraza El Patio"
                                 class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
                                 loading="lazy" decoding="async">
                         </div>
-                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow sm:mt-8 group">
+                        <div class="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow sm:mt-8">
                             <img src="imagenes/Fondo 3.jpg" alt="Interiores El Patio"
                                 class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
                                 loading="lazy" decoding="async">
                         </div>
-                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow group">
+                        <div class="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow">
                             <img src="imagenes/Fondo 4.jpg" alt="Barra El Patio"
                                 class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
                                 loading="lazy" decoding="async">
                         </div>
-                        <div class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow sm:mt-8 group">
+                        <div class="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow sm:mt-8">
                             <img src="imagenes/Fondo 5.jpg" alt="Eventos en El Patio"
                                 class="h-full w-full object-cover group-hover:scale-105 transition duration-300"
                                 loading="lazy" decoding="async">
@@ -1121,41 +1040,37 @@
         <section id="horario" class="py-10 sm:py-20 bg-soft w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 sm:gap-12 items-center">
-                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100"
-                        data-aos="fade-right">
-                        <img src="imagenes/Horario.jpg" alt="Horario Restaurante El Patio"
-                            class="w-full h-full object-cover" loading="lazy" decoding="async">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100" data-aos="fade-right">
+                        <img src="imagenes/Horario.jpg" alt="Horario Restaurante El Patio" class="w-full h-full object-cover"
+                            loading="lazy" decoding="async">
                     </div>
                     <div data-aos="fade-left">
-                        <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Nuevo
-                            Horario</p>
-                        <h2 class="text-2xl sm:text-5xl font-black text-ink mb-4 sm:mb-6">Te esperamos en Sucursal
-                            Juigalpa</h2>
+                        <p class="text-primary font-black uppercase tracking-wide mb-2">Nuevo Horario</p>
+                        <h2 class="text-2xl sm:text-5xl font-black text-ink mb-4 sm:mb-6">Te esperamos en Sucursal Juigalpa</h2>
                         <p class="text-muted text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                             Restaurante El Patio actualiza su horario de atencion para que disfrutes tus comidas
                             favoritas desde el mediodia hasta la noche.
                         </p>
                         <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
                             <div class="bg-white border border-gray-100 rounded-2xl p-3 sm:p-5 shadow-sm">
-                                <i
-                                    class="fa-regular fa-calendar-days text-primary text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                                <h3 class="font-bold text-ink text-xs sm:text-base mb-0.5 sm:mb-1">Atencion</h3>
-                                <p class="text-[10px] sm:text-sm text-muted">Miercoles a Lunes</p>
+                                <i class="fa-regular fa-calendar-days text-primary text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                                <h3 class="font-bold text-ink">Atencion</h3>
+                                <p class="text-muted">Miercoles a Lunes</p>
                             </div>
                             <div class="bg-white border border-gray-100 rounded-2xl p-3 sm:p-5 shadow-sm">
                                 <i class="fa-regular fa-clock text-primary text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                                <h3 class="font-bold text-ink text-xs sm:text-base mb-0.5 sm:mb-1">Horario</h3>
-                                <p class="text-[10px] sm:text-sm text-muted">11:30 AM a 9:30 PM</p>
+                                <h3 class="font-bold text-ink">Horario</h3>
+                                <p class="text-muted">11:30 AM a 9:30 PM</p>
                             </div>
                             <div class="bg-white border border-gray-100 rounded-2xl p-3 sm:p-5 shadow-sm">
                                 <i class="fa-solid fa-door-closed text-primary text-xl sm:text-2xl mb-2 sm:mb-3"></i>
-                                <h3 class="font-bold text-ink text-xs sm:text-base mb-0.5 sm:mb-1">Cerrado</h3>
-                                <p class="text-[10px] sm:text-sm text-muted">Martes</p>
+                                <h3 class="font-bold text-ink">Cerrado</h3>
+                                <p class="text-muted">Martes</p>
                             </div>
                         </div>
                         <div class="flex gap-3 items-start bg-white border border-orange-100 rounded-2xl p-3 sm:p-5">
                             <i class="fa-solid fa-circle-info text-primary text-base sm:text-lg mt-1"></i>
-                            <p class="text-xs sm:text-sm text-muted leading-relaxed">
+                            <p class="text-muted leading-relaxed">
                                 A partir de este miercoles comenzamos a atender desde las 11:30 A.M. en Restaurante El
                                 Patio, Sucursal Juigalpa.
                             </p>
@@ -1170,8 +1085,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 items-center">
                     <div data-aos="fade-right">
-                        <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Atención
-                            Inmediata</p>
+                        <p class="text-primary font-black uppercase tracking-wide mb-2">Atención Inmediata</p>
                         <h2 class="text-2xl sm:text-5xl font-black mb-4 sm:mb-6">¿Cómo te ayudamos?</h2>
                         <p class="text-gray-300 text-base sm:text-lg mb-6 sm:mb-8">
                             Ponte en contacto directo con nuestro equipo. Rellena el asistente rápido para iniciar un
@@ -1184,9 +1098,8 @@
                                     <i class="fa-solid fa-map-location-dot"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-white text-sm sm:text-lg">Dirección del Patio</h4>
-                                    <p class="text-gray-300 text-xs sm:text-base">Del Supermercado El Camarada 1/2
-                                        cuadra al Sur, Juigalpa,
+                                    <h4 class="font-bold text-white">Dirección del Patio</h4>
+                                    <p class="text-gray-300">Del Supermercado El Camarada 1/2 cuadra al Sur, Juigalpa,
                                         Chontales, Nicaragua.</p>
                                 </div>
                             </div>
@@ -1196,8 +1109,8 @@
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-white text-sm sm:text-lg">Teléfono Directo</h4>
-                                    <p class="text-gray-300 text-xs sm:text-base">+505 5878 5729</p>
+                                    <h4 class="font-bold text-white">Teléfono Directo</h4>
+                                    <p class="text-gray-300">+505 5878 5729</p>
                                 </div>
                             </div>
                             <div class="flex gap-3 sm:gap-4">
@@ -1206,8 +1119,8 @@
                                     <i class="fa-solid fa-hashtag"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-white text-sm sm:text-lg">Redes Sociales</h4>
-                                    <p class="text-gray-300 text-xs sm:text-base">Síguenos en nuestras redes:</p>
+                                    <h4 class="font-bold text-white">Redes Sociales</h4>
+                                    <p class="text-gray-300">Síguenos en nuestras redes:</p>
                                     <div class="flex gap-2 sm:gap-3 mt-1 sm:mt-2">
                                         <a href="https://www.facebook.com/restauranteelpatio.chontales?locale=es_LA"
                                             target="_blank" rel="noopener"
@@ -1228,13 +1141,11 @@
                     <!-- FORMULARIO -->
                     <div class="bg-white text-ink p-6 sm:p-8 rounded-2xl shadow-glow" data-aos="fade-left">
                         <h3 class="text-xl sm:text-2xl font-black mb-1">Contacto Directo vía WhatsApp</h3>
-                        <p class="text-muted text-xs sm:text-sm mb-4 sm:mb-6">Selecciona el tipo de consulta para
-                            coordinar rápidamente con
+                        <p class="text-muted mb-4 sm:mb-6">Selecciona el tipo de consulta para coordinar rápidamente con
                             nuestro personal.</p>
                         <form id="contact-form" class="space-y-4 sm:space-y-5">
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-1 sm:mb-2">¿Qué deseas
-                                    realizar?</label>
+                                <label class="block text-sm font-bold text-slate-700 mb-1 sm:mb-2">¿Qué deseas realizar?</label>
                                 <div class="grid grid-cols-2 gap-2 sm:gap-3">
                                     <label class="action-selector cursor-pointer">
                                         <input type="radio" name="order_type" value="delivery" checked class="sr-only">
@@ -1260,8 +1171,7 @@
                                     class="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm sm:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-1" for="phone">Número de
-                                    Celular</label>
+                                <label class="block text-sm font-bold text-slate-700 mb-1" for="phone">Número de Celular</label>
                                 <input id="phone" type="tel" placeholder="Ej. 5878 5729" required
                                     class="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm sm:text-base">
                             </div>
@@ -1275,14 +1185,14 @@
                             </div>
                             <button type="submit" class="btn-primary w-full py-3 sm:py-4 text-sm sm:text-base">
                                 <i class="fa-brands fa-whatsapp text-base sm:text-lg"></i> <span
-                                    id="submit-btn-text">Enviar Consulta
-                                    / Pedido</span>
+                                    id="submit-btn-text">Enviar Consulta / Pedido</span>
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- ===== FOOTER ===== -->
@@ -1295,55 +1205,53 @@
                         class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-xl opacity-95" loading="lazy"
                         decoding="async">
                     <div class="text-center">
-                        <h4 class="font-heading font-black text-lg sm:text-xl">El Patio <span
-                                class="text-primary">Chontales</span></h4>
-                        <p class="text-sm text-gray-400">Una mezcla de Culturas y Sabores.</p>
+                        <h4 class="font-heading font-black">El Patio <span class="text-primary">Chontales</span></h4>
+                        <p class="text-gray-400">Una mezcla de Culturas y Sabores.</p>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <h5 class="font-bold text-white text-base sm:text-lg mb-2">Horario</h5>
-                    <p class="text-sm text-gray-400">Miércoles a Lunes</p>
-                    <p class="text-sm text-gray-400">11:30 AM - 9:30 PM</p>
-                    <p class="text-sm text-gray-500">Cerrado los Martes</p>
+                    <h5 class="font-bold text-white">Horario</h5>
+                    <p class="text-gray-400">Miércoles a Lunes</p>
+                    <p class="text-gray-400">11:30 AM - 9:30 PM</p>
+                    <p class="text-gray-500">Cerrado los Martes</p>
                 </div>
 
                 <div class="text-center">
-                    <h5 class="font-bold text-white text-base sm:text-lg mb-2">Contacto</h5>
-                    <p class="text-sm text-gray-400">
+                    <h5 class="font-bold text-white">Contacto</h5>
+                    <p class="text-gray-400">
                         <i class="fa-solid fa-phone text-primary mr-2"></i>+505 5878 5729
                     </p>
-                    <p class="text-sm text-gray-400">
+                    <p class="text-gray-400">
                         <i class="fa-solid fa-location-dot text-primary mr-2"></i>Juigalpa, Chontales
                     </p>
                 </div>
 
                 <div class="text-center">
-                    <h5 class="font-bold text-white text-base sm:text-lg mb-2">Síguenos</h5>
+                    <h5 class="font-bold text-white">Síguenos</h5>
                     <div class="flex justify-center gap-3">
                         <a href="https://www.facebook.com/restauranteelpatio.chontales?locale=es_LA" target="_blank"
-                            rel="noopener" class="social-icon facebook w-11 h-11">
-                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                            rel="noopener" class="social-icon facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
                         </a>
                         <a href="https://www.instagram.com/elpatio.chontales" target="_blank" rel="noopener"
-                            class="social-icon instagram w-11 h-11">
-                            <i class="fa-brands fa-instagram text-lg"></i>
+                            class="social-icon instagram">
+                            <i class="fa-brands fa-instagram"></i>
                         </a>
-                        <a href="https://wa.me/50558785729" target="_blank" rel="noopener"
-                            class="social-icon whatsapp w-11 h-11">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <a href="https://wa.me/50558785729" target="_blank" rel="noopener" class="social-icon whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
                     <div class="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1">
-                        <a href="#inicio" class="text-sm text-gray-400 hover:text-primary transition">Inicio</a>
-                        <a href="#menu" class="text-sm text-gray-400 hover:text-primary transition">Menú</a>
-                        <a href="#destacado" class="text-sm text-gray-400 hover:text-primary transition">Destacado</a>
-                        <a href="#contacto" class="text-sm text-gray-400 hover:text-primary transition">Contacto</a>
+                        <a href="#inicio" class="text-gray-400 hover:text-primary transition">Inicio</a>
+                        <a href="#menu" class="text-gray-400 hover:text-primary transition">Menú</a>
+                        <a href="#destacado" class="text-gray-400 hover:text-primary transition">Destacado</a>
+                        <a href="#contacto" class="text-gray-400 hover:text-primary transition">Contacto</a>
                     </div>
                 </div>
 
             </div>
-            <div class="border-t border-white/5 pt-4 sm:pt-6 text-center text-sm text-gray-500">
+            <div class="border-t border-white/5 pt-4 sm:pt-6 text-center text-gray-500">
                 <p>&copy; 2026 Restaurante El Patio Chontales. Todos los derechos reservados.</p>
             </div>
         </div>
@@ -1353,7 +1261,13 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
     </script>
     <script>
-        AOS.init({ duration: 700, once: true, offset: 30 });
+        // ===== AOS CONFIG =====
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 40,
+            easing: 'ease-out-cubic'
+        });
 
         // ===== DATOS DEL MENÚ =====
         const menuData = [{
@@ -1363,7 +1277,7 @@
             img: "imagenes/Comida 2.jpg",
             items: [
                 { name: "Carne Asada Chontaleña", desc: "Corte jugoso preparado al carbón, con gallopinto, tajadas verdes, queso chontaleño y ensalada fresca.", price: "C$ 250", img: "imagenes/Comida 2.jpg" },
-                { name: "Pupusas El Patio", desc: "Tortilla dorada a la plancha con queso bien fundido y carne preparada al carbón.", price: "C$ 190", img: "imagenes/Comida 6.jpg" }
+                { name: "Pupusas El Patio", desc: "Tortilla dorada a la plancha con queso bien fundido y carne preparada al momento.", price: "C$ 80", img: "imagenes/Comida 6.jpg" }
             ]
         }, {
             id: 'antojos',
@@ -1371,8 +1285,8 @@
             icon: "fa-solid fa-utensils",
             img: "imagenes/Comida 1.jpg",
             items: [
-                { name: "Nachos El Patio con Queso", desc: "Nachos doraditos servidos con carne, queso fundido, pico de gallo fresco y el toque de salsa de la casa.", price: "C$ 180", img: "imagenes/Comida 1.jpg" },
-                { name: "Fajitas de Pollo", desc: "Fajitas de pollo empanizadas al momento, crujientes por fuera y suaves por dentro.", price: "C$ 220", img: "imagenes/Comida 3.jpg" },
+                { name: "Nachos El Patio con Queso", desc: "Nachos doraditos servidos con carne, queso fundido, pico de gallo fresco y salsa de la casa.", price: "C$ 180", img: "imagenes/Comida 1.jpg" },
+                { name: "Fajitas de Pollo", desc: "Fajitas de pollo empanizadas al momento, acompañadas de papas fritas y pico de gallo.", price: "C$ 220", img: "imagenes/Comida 3.jpg" },
                 { name: "Nachos Supremos", desc: "Una bandeja abundante de nachos con carne sazonada, queso derretido, crema, pico de gallo y salsa.", price: "C$ 210", img: "imagenes/Comida 4.jpg" },
                 { name: "Tacos Dorados", desc: "Tacos enrollados, bien rellenos y fritos hasta quedar crujientes.", price: "C$ 160", img: "imagenes/Comida 5.jpg" },
                 { name: "Burrito", desc: "Burrito relleno con carne sazonada, frijoles, arroz y queso derretido.", price: "C$ 200", img: "imagenes/Comida 7.jpg" }
@@ -1507,6 +1421,9 @@
                 }
             });
 
+            // Ocultar vista principal
+            mainView.style.display = 'none';
+
             let categoryName = 'Todos';
             let itemsToShow = [];
 
@@ -1537,25 +1454,25 @@
                         <p class="text-muted text-sm mb-6">${itemsToShow.length} platillos disponibles</p>
                         <div class="grid sm:grid-cols-2 gap-4">
                             ${itemsToShow.map((item) => {
-                                let detailsHTML = '';
-                                if (item.category === 'asados') {
-                                    detailsHTML = `
+                let detailsHTML = '';
+                if (item.category === 'asados') {
+                    detailsHTML = `
                                         <span><i class="fa-solid fa-fire"></i> Parrilla</span>
                                         <span><i class="fa-solid fa-utensils"></i> Plato fuerte</span>
                                     `;
-                                } else if (item.category === 'antojos') {
-                                    detailsHTML = `
+                } else if (item.category === 'antojos') {
+                    detailsHTML = `
                                         <span><i class="fa-solid fa-utensils"></i> Para compartir</span>
                                         <span><i class="fa-solid fa-pepper-hot"></i> Salsa aparte</span>
                                     `;
-                                } else {
-                                    detailsHTML = `
+                } else {
+                    detailsHTML = `
                                         <span><i class="fa-solid fa-beer-mug-empty"></i> Refrescante</span>
                                         <span><i class="fa-solid fa-lemon"></i> Natural</span>
                                     `;
-                                }
+                }
 
-                                return `
+                return `
                                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-all">
                                         <div class="food-carousel" data-carousel>
                                             <div class="food-carousel-track">
@@ -1585,12 +1502,11 @@
                                         </div>
                                     </div>
                                 `;
-                            }).join('')}
+            }).join('')}
                         </div>
                     `;
 
-            // Ocultar vista principal, mostrar subvista
-            mainView.style.display = 'none';
+            // Mostrar subvista
             subview.classList.add('active');
 
             // Inicializar carruseles en la subvista
@@ -1810,5 +1726,4 @@
         }
     </script>
 </body>
-
 </html>
