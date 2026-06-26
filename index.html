@@ -538,6 +538,7 @@
                 opacity: 0;
                 transform: translateY(12px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -549,9 +550,11 @@
             0% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
             }
+
             70% {
                 box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
             }
+
             100% {
                 box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
             }
@@ -562,6 +565,7 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -573,6 +577,7 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -580,10 +585,12 @@
         }
 
         @keyframes image-breathe {
+
             0%,
             100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.035);
             }
@@ -594,6 +601,7 @@
                 opacity: 0;
                 transform: translateY(-10px) scale(1.02);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -893,8 +901,8 @@
                     data-src="imagenes/Fondo 5.jpg" alt="" class="hero-slide" loading="lazy" decoding="async">
             </div>
             <div class="hero-mobile-image" data-hero-carousel>
-                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio" class="hero-slide active"
-                    decoding="async" fetchpriority="high">
+                <img src="imagenes/Fondo 1.jpg" alt="Ambiente principal de Restaurante El Patio"
+                    class="hero-slide active" decoding="async" fetchpriority="high">
                 <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
                     data-src="imagenes/Fondo 2.jpg" alt="Terraza de Restaurante El Patio" class="hero-slide"
                     loading="lazy" decoding="async">
@@ -977,6 +985,83 @@
             </div>
         </section>
 
+        <!-- ===== MENÚ CON CATEGORÍAS VISUALES (CON TARJETAS) ===== -->
+        <section id="menu" class="py-10 sm:py-20 bg-soft w-full max-w-full overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- ===== VISTA PRINCIPAL (categorías) - SIEMPRE VISIBLE ===== -->
+                <div id="main-view" style="display: block !important;">
+                    <div class="text-center mb-8 sm:mb-10" data-aos="fade-up">
+                        <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">Explora
+                            Nuestro Menú</p>
+                        <h2 class="text-2xl sm:text-5xl font-black text-ink">Nuestras Especialidades</h2>
+                        <p class="text-muted text-sm sm:text-base mt-2 sm:mt-3">Selecciona una categoría para ver los
+                            platillos disponibles.</p>
+                    </div>
+
+                    <!-- ===== CATEGORÍAS VISUALES (TARJETAS CON FOTO) ===== -->
+                    <div class="categories-grid" id="categories-grid">
+                        <!-- Renderizado por JS -->
+                    </div>
+                </div>
+
+                <!-- ===== SUBVISTA (productos por categoría) ===== -->
+                <div class="subview" id="subview">
+                    <button class="back-btn" id="back-btn">
+                        <i class="fa-solid fa-arrow-left"></i> Volver al menú
+                    </button>
+                    <div id="subview-body">
+                        <!-- Renderizado por JS -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== PLATILLO DESTACADO ===== -->
+        <section id="destacado" class="py-10 sm:py-20 bg-white w-full max-w-full overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+                    <p class="text-primary font-black uppercase tracking-wide mb-2 text-sm sm:text-base">🌟
+                        Recomendación del Patio</p>
+                    <h2 class="text-2xl sm:text-5xl font-black text-ink">Platillo Destacado</h2>
+                </div>
+
+                <div class="featured-card rounded-3xl overflow-hidden shadow-glow-lg">
+                    <div class="grid md:grid-cols-2 gap-0">
+                        <div class="relative h-56 sm:h-64 md:h-auto">
+                            <img src="imagenes/Comida 2.jpg" alt="Carne Asada Chontaleña"
+                                class="w-full h-full object-cover" loading="lazy" decoding="async">
+                        </div>
+                        <div class="p-6 sm:p-8 md:p-12 flex flex-col justify-center text-white">
+                            <h3 class="text-2xl sm:text-4xl font-black mb-2 sm:mb-3">Carne Asada Chontaleña</h3>
+                            <p class="text-gray-300 text-base sm:text-lg mb-3 sm:mb-4 leading-relaxed">
+                                Nuestro plato estrella: carne jugosa al carbón, gallopinto, tajadas verdes, queso
+                                chontaleño y ensalada fresca. Una experiencia que te transporta al campo.
+                            </p>
+                            <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                                <span
+                                    class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">
+                                    <i class="fa-solid fa-fire text-primary"></i> Al Carbón
+                                </span>
+                                <span
+                                    class="inline-flex items-center gap-2 bg-white/10 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">
+                                    <i class="fa-solid fa-utensils text-primary"></i> Plato Fuerte
+                                </span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                                <span class="text-2xl sm:text-3xl font-black text-primary">C$ 250</span>
+                                <a href="https://wa.me/50558785729?text=Hola%2C%20quiero%20ordenar%20la%20Carne%20Asada%20Chontale%C3%B1a"
+                                    target="_blank" class="btn-primary px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                                    <i class="fa-brands fa-whatsapp"></i> Ordenar Ahora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== AMBIENTE ===== -->
         <section id="ambiente" class="py-10 sm:py-20 bg-white w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -986,22 +1071,22 @@
                         <h2 class="text-2xl sm:text-5xl font-black text-ink mb-4 sm:mb-6">Un Ambiente Único</h2>
                         <p class="text-muted text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
                             En <strong>El Patio Chontales</strong> nos esmeramos por darte no solo la mejor comida, sino
-                            un espacio acogedor y fresco al aire libre. Disfruta de nuestras noches temáticas, música en
-                            vivo y la tranquilidad de nuestra icónica terraza.
+                            un espacio acogedor y familiar donde puedas disfrutar de una experiencia gastronómica única.
+                            Nuestro ambiente al aire libre y nuestra atención cálida te harán sentir como en casa.
                         </p>
                         <div class="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                             <div class="flex gap-3 items-start">
                                 <i class="fa-solid fa-square-check text-primary text-base sm:text-lg mt-1"></i>
                                 <div>
                                     <h4 class="font-bold text-ink">Espacio al aire libre</h4>
-                                    <p class="text-muted">Espacios frescos ideales para relajarse en Familia.</p>
+                                    <p class="text-muted">Disfruta de nuestras áreas frescas y ventiladas.</p>
                                 </div>
                             </div>
                             <div class="flex gap-3 items-start">
                                 <i class="fa-solid fa-square-check text-primary text-base sm:text-lg mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold text-ink">Celebraciones y Reuniones</h4>
-                                    <p class="text-muted">Perfecto para cumpleaños, salidas familiares o entre amigos.</p>
+                                    <h4 class="font-bold text-ink">Ambiente Familiar</h4>
+                                    <p class="text-muted">Perfecto para compartir con tus seres queridos.</p>
                                 </div>
                             </div>
                         </div>
@@ -1040,20 +1125,23 @@
         <section id="horario" class="py-10 sm:py-20 bg-soft w-full max-w-full overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 sm:gap-12 items-center">
-                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100" data-aos="fade-right">
-                        <img src="imagenes/Horario.jpg" alt="Horario Restaurante El Patio" class="w-full h-full object-cover"
-                            loading="lazy" decoding="async">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100"
+                        data-aos="fade-right">
+                        <img src="imagenes/Horario.jpg" alt="Horario Restaurante El Patio"
+                            class="w-full h-full object-cover" loading="lazy" decoding="async">
                     </div>
                     <div data-aos="fade-left">
                         <p class="text-primary font-black uppercase tracking-wide mb-2">Nuevo Horario</p>
-                        <h2 class="text-2xl sm:text-5xl font-black text-ink mb-4 sm:mb-6">Te esperamos en Sucursal Juigalpa</h2>
+                        <h2 class="text-2xl sm:text-5xl font-black text-ink mb-4 sm:mb-6">Te esperamos en Sucursal
+                            Juigalpa</h2>
                         <p class="text-muted text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                             Restaurante El Patio actualiza su horario de atencion para que disfrutes tus comidas
                             favoritas desde el mediodia hasta la noche.
                         </p>
                         <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
                             <div class="bg-white border border-gray-100 rounded-2xl p-3 sm:p-5 shadow-sm">
-                                <i class="fa-regular fa-calendar-days text-primary text-xl sm:text-2xl mb-2 sm:mb-3"></i>
+                                <i
+                                    class="fa-regular fa-calendar-days text-primary text-xl sm:text-2xl mb-2 sm:mb-3"></i>
                                 <h3 class="font-bold text-ink">Atencion</h3>
                                 <p class="text-muted">Miercoles a Lunes</p>
                             </div>
@@ -1145,7 +1233,8 @@
                             nuestro personal.</p>
                         <form id="contact-form" class="space-y-4 sm:space-y-5">
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-1 sm:mb-2">¿Qué deseas realizar?</label>
+                                <label class="block text-sm font-bold text-slate-700 mb-1 sm:mb-2">¿Qué deseas
+                                    realizar?</label>
                                 <div class="grid grid-cols-2 gap-2 sm:gap-3">
                                     <label class="action-selector cursor-pointer">
                                         <input type="radio" name="order_type" value="delivery" checked class="sr-only">
@@ -1171,7 +1260,8 @@
                                     class="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm sm:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-1" for="phone">Número de Celular</label>
+                                <label class="block text-sm font-bold text-slate-700 mb-1" for="phone">Número de
+                                    Celular</label>
                                 <input id="phone" type="tel" placeholder="Ej. 5878 5729" required
                                     class="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm sm:text-base">
                             </div>
@@ -1269,12 +1359,13 @@
             easing: 'ease-out-cubic'
         });
 
-        // ===== DATOS DEL MENÚ =====
+        // ===== DATOS DEL MENÚ CON TIPO =====
         const menuData = [{
             id: 'asados',
             category: "Asados & Cortes",
             icon: "fa-solid fa-fire",
             img: "imagenes/Comida 2.jpg",
+            type: "platillos",
             items: [
                 { name: "Carne Asada Chontaleña", desc: "Corte jugoso preparado al carbón, con gallopinto, tajadas verdes, queso chontaleño y ensalada fresca.", price: "C$ 250", img: "imagenes/Comida 2.jpg" },
                 { name: "Pupusas El Patio", desc: "Tortilla dorada a la plancha con queso bien fundido y carne preparada al momento.", price: "C$ 80", img: "imagenes/Comida 6.jpg" }
@@ -1284,6 +1375,7 @@
             category: "Antojos Express",
             icon: "fa-solid fa-utensils",
             img: "imagenes/Comida 1.jpg",
+            type: "platillos",
             items: [
                 { name: "Nachos El Patio con Queso", desc: "Nachos doraditos servidos con carne, queso fundido, pico de gallo fresco y salsa de la casa.", price: "C$ 180", img: "imagenes/Comida 1.jpg" },
                 { name: "Fajitas de Pollo", desc: "Fajitas de pollo empanizadas al momento, acompañadas de papas fritas y pico de gallo.", price: "C$ 220", img: "imagenes/Comida 3.jpg" },
@@ -1296,6 +1388,7 @@
             category: "Bebidas",
             icon: "fa-solid fa-mug-saucer",
             img: "imagenes/Bebida 1.jpg",
+            type: "bebidas",
             items: [
                 { name: "Michelada con Toña", desc: "La clásica michelada preparada con cerveza Toña bien fría, jugo de limón, sales especiales y un toque de picante.", price: "C$ 90", img: "imagenes/Bebida 1.jpg" },
                 { name: "Frescos Naturales", desc: "Refrescantes bebidas preparadas con frutas de temporada.", price: "C$ 70", img: "imagenes/Bebida 2.jpg" }
@@ -1316,16 +1409,21 @@
         function renderCategories() {
             categoriesGrid.innerHTML = '';
 
+            const totalItems = menuData.reduce((acc, cat) => acc + cat.items.length, 0);
+            // Determinar si todos son bebidas o hay mezcla
+            const allBebidas = menuData.every(cat => cat.type === 'bebidas');
+            const totalType = allBebidas ? 'bebidas' : 'platillos';
+
             const allCard = document.createElement('div');
             allCard.className =
                 `category-card active cursor-pointer border-2 border-primary shadow-lg shadow-primary/20`;
             allCard.innerHTML = `
-                        <img src="imagenes/Fondo 1.jpg" alt="Todos los platillos" loading="lazy">
+                        <img src="imagenes/Fondo 1.jpg" alt="Todos los productos" loading="lazy">
                         <div class="overlay">
                             <h3>Todos</h3>
-                            <p>${menuData.reduce((acc, cat) => acc + cat.items.length, 0)} platillos</p>
+                            <p>${totalItems} ${totalType}</p>
                         </div>
-                        <span class="count-badge">${menuData.reduce((acc, cat) => acc + cat.items.length, 0)}</span>
+                        <span class="count-badge">${totalItems}</span>
                     `;
             allCard.addEventListener('click', () => openSubview('all'));
             categoriesGrid.appendChild(allCard);
@@ -1337,7 +1435,7 @@
                             <img src="${cat.img}" alt="${cat.category}" loading="lazy">
                             <div class="overlay">
                                 <h3>${cat.category}</h3>
-                                <p>${cat.items.length} platillos</p>
+                                <p>${cat.items.length} ${cat.type}</p>
                             </div>
                             <span class="count-badge">${cat.items.length}</span>
                         `;
@@ -1425,10 +1523,14 @@
             mainView.style.display = 'none';
 
             let categoryName = 'Todos';
+            let typeLabel = 'platillos';
             let itemsToShow = [];
 
             if (categoryId === 'all') {
-                categoryName = 'Todos los Platillos';
+                categoryName = 'Todos';
+                // Determinar si todos son bebidas
+                const allBebidas = menuData.every(cat => cat.type === 'bebidas');
+                typeLabel = allBebidas ? 'bebidas' : 'platillos';
                 menuData.forEach(cat => {
                     itemsToShow = itemsToShow.concat(cat.items.map(item => ({
                         ...item,
@@ -1440,6 +1542,7 @@
                 const category = menuData.find(c => c.id === categoryId);
                 if (category) {
                     categoryName = category.category;
+                    typeLabel = category.type;
                     itemsToShow = category.items.map(item => ({
                         ...item,
                         category: category.id,
@@ -1451,7 +1554,7 @@
             // Renderizar en la subvista con carruseles
             subviewBody.innerHTML = `
                         <h2 class="font-heading text-2xl sm:text-3xl font-black text-ink mb-1">${categoryName}</h2>
-                        <p class="text-muted text-sm mb-6">${itemsToShow.length} platillos disponibles</p>
+                        <p class="text-muted text-sm mb-6">${itemsToShow.length} ${typeLabel} disponibles</p>
                         <div class="grid sm:grid-cols-2 gap-4">
                             ${itemsToShow.map((item) => {
                 let detailsHTML = '';
@@ -1546,7 +1649,7 @@
         }
 
         // ===== EVENTO PARA EL BOTÓN "ATRÁS" DEL NAVEGADOR =====
-        window.addEventListener('popstate', function(event) {
+        window.addEventListener('popstate', function (event) {
             if (event.state && event.state.category) {
                 // Si el estado tiene una categoría, abrir esa subvista
                 openSubview(event.state.category);
@@ -1557,7 +1660,7 @@
         });
 
         // ===== EVENTOS =====
-        backBtn.addEventListener('click', function(e) {
+        backBtn.addEventListener('click', function (e) {
             e.preventDefault();
             closeSubview();
             // Limpiar el historial
@@ -1651,7 +1754,7 @@
         const submitBtnText = document.getElementById('submit-btn-text');
 
         document.querySelectorAll('input[name="order_type"]').forEach(radio => {
-            radio.addEventListener('change', function() {
+            radio.addEventListener('change', function () {
                 if (this.value === 'reserva') {
                     messageLabel.textContent = "Detalles de la Reserva (Fecha, Hora y N° de Personas)";
                     messageInput.placeholder =
@@ -1694,7 +1797,7 @@
 
         // ===== SCROLL SUAVE =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
                 e.preventDefault();
@@ -1726,4 +1829,5 @@
         }
     </script>
 </body>
+
 </html>
